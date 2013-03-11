@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="drawing.svg">
+   sodipodi:docname="draft.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="-906.88097"
-     inkscape:cy="7.5777554"
+     inkscape:zoom="0.1767767"
+     inkscape:cx="365.94077"
+     inkscape:cy="-589.32326"
      inkscape:document-units="px"
      inkscape:current-layer="svg2"
      showgrid="false"
@@ -75,7 +75,10 @@
        d="m -1372.4219,988.78436 -2.4552,-718.21009 131.4278,-0.44929 2.4552,718.21009 -64.0802,60.21943 z"
        id="rect2985"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
@@ -83,7 +86,10 @@
        y="-1294.6305"
        id="text3758"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3760"
          x="-892.1322"
@@ -94,7 +100,10 @@
        inkscape:connector-curvature="0"
        id="path3786"
        d="m -1212.4228,988.2374 -2.4552,-718.21009 131.4278,-0.44929 2.4552,718.2101 -64.0802,60.21938 z"
-       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        sodipodi:linespacing="125%"
        id="text3788"
@@ -102,7 +111,10 @@
        x="-892.1322"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:56px;fill:#ffffff;fill-opacity:1"
          y="-1134.6305"
          x="-892.1322"
@@ -113,7 +125,10 @@
        d="m -1052.4237,987.69044 -2.4552,-718.21009 131.42776,-0.44929 2.45521,718.2101 -64.08024,60.21944 z"
        id="path3792"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
@@ -121,7 +136,10 @@
        y="-974.63049"
        id="text3794"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3796"
          x="-892.1322"
@@ -132,7 +150,10 @@
        inkscape:connector-curvature="0"
        id="path3798"
        d="m -892.42468,987.14349 -2.4552,-718.2101 131.42781,-0.44928 2.4552,718.21009 -64.08023,60.2194 z"
-       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        sodipodi:linespacing="125%"
        id="text3800"
@@ -140,7 +161,10 @@
        x="-892.1322"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:56px;fill:#ffffff;fill-opacity:1"
          y="-814.63049"
          x="-892.1322"
@@ -151,7 +175,10 @@
        d="m -732.42561,986.59653 -2.45521,-718.21009 131.42781,-0.44929 2.45521,718.21009 -64.08024,60.21946 z"
        id="path3804"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
@@ -159,7 +186,10 @@
        y="-654.63049"
        id="text3806"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3808"
          x="-892.1322"
@@ -170,7 +200,10 @@
        inkscape:connector-curvature="0"
        id="path3810"
        d="m -572.42655,986.04957 -2.4552,-718.21009 131.42781,-0.44929 2.4552,718.2101 -64.08023,60.21941 z"
-       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;fill:#006400;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        sodipodi:linespacing="125%"
        id="text3812"
@@ -178,7 +211,10 @@
        x="-892.1322"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:56px;fill:#ffffff;fill-opacity:1"
          y="-494.63049"
          x="-892.1322"
@@ -189,7 +225,10 @@
        d="m -252.42844,984.95566 -2.4552,-718.2101 131.42783,-0.44928 2.4552,718.21009 -64.08021,60.21943 z"
        id="path3822"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
@@ -197,7 +236,10 @@
        y="-174.63051"
        id="text3824"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan3826"
          x="-892.1322"
@@ -208,7 +250,10 @@
        inkscape:connector-curvature="0"
        id="path3841"
        d="m -92.429374,984.4087 -2.455205,-718.21009 131.427832,-0.44929 2.455205,718.21009 -64.080216,60.21939 z"
-       style="color:#000000;fill:#000064;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       style="color:#000000;fill:#000064;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:5.06463337;stroke-miterlimit:4;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <text
        sodipodi:linespacing="125%"
        id="text3843"
@@ -216,7 +261,10 @@
        x="-892.1322"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:56px;fill:#ffffff;fill-opacity:1"
          y="-14.630508"
          x="-892.1322"
@@ -224,7 +272,10 @@
          sodipodi:role="line">Glaucophyta</tspan></text>
     <g
        id="g4044"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1487.2828,1093.8205)">
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1487.2828,1093.8205)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path3847"
@@ -444,7 +495,10 @@
     <g
        transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.7016,93.621188)"
        style="display:inline"
-       id="g4415">
+       id="g4415"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <g
          id="g4399">
         <path
@@ -467,7 +521,10 @@
     <g
        style="display:inline"
        id="g4385"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.7016,93.621208)">
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.7016,93.621208)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4224-2-0-7"
@@ -487,7 +544,10 @@
     <g
        transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.3256,203.62057)"
        style="display:inline"
-       id="g4371">
+       id="g4371"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4224-2-0"
@@ -507,7 +567,10 @@
     <g
        style="opacity:0.92000002;display:inline"
        id="g4352"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.3188,205.62055)">
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.3188,205.62055)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4224-2"
@@ -527,7 +590,10 @@
     <g
        style="display:inline"
        id="g4357"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.3393,199.62059)">
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,-1430.3393,199.62059)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <path
          inkscape:connector-curvature="0"
          id="path4224"
@@ -551,7 +617,10 @@
        y="-1320.5173"
        id="text4559"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4561"
          x="-249.95018"
@@ -569,7 +638,10 @@
        x="-249.95018"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:32px"
          id="tspan4569"
          y="-1160.5173"
@@ -587,7 +659,10 @@
        y="-1000.5174"
        id="text4571"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="-249.95018"
          y="-1000.5174"
@@ -605,7 +680,10 @@
        x="-249.95018"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:32px"
          id="tspan4581"
          y="-840.51733"
@@ -618,7 +696,10 @@
        y="-680.51733"
        id="text4583"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="-249.95018"
          y="-680.51733"
@@ -628,7 +709,7 @@
          x="-249.95018"
          y="-640.51733"
          style="font-size:32px"
-         id="tspan4629">Coleochaetales e Charales</tspan></text>
+         id="tspan4629">(Coleochaetales e Charales)</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text4589"
@@ -636,7 +717,10 @@
        x="-249.95018"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:32px"
          id="tspan4593"
          y="-500.51733"
@@ -649,7 +733,10 @@
        y="-186.51735"
        id="text4595"
        sodipodi:linespacing="125%"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          x="-249.95018"
          y="-186.51735"
@@ -662,7 +749,10 @@
        x="-249.95018"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"><tspan
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          style="font-size:32px"
          id="tspan4605"
          y="-20.517349"
@@ -675,7 +765,10 @@
        height="28.284271"
        x="-1093.1688"
        y="-1323.1591"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4631-7"
@@ -683,7 +776,10 @@
        height="28.284271"
        x="-1314.8719"
        y="-1122.7933"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="-842.79327"
        x="-1093.8719"
@@ -691,7 +787,10 @@
        width="28.284271"
        id="rect4651"
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="-983.79327"
        x="-1423.8719"
@@ -699,7 +798,10 @@
        width="28.284271"
        id="rect4653"
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4655"
@@ -707,7 +809,10 @@
        height="28.284271"
        x="-1642.8719"
        y="-683.79327"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        y="-203.1541"
        x="-1441.7761"
@@ -715,7 +820,10 @@
        width="28.284271"
        id="rect4657"
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4659"
@@ -723,7 +831,10 @@
        height="28.284271"
        x="-1092.8719"
        y="-43.793228"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4663"
@@ -731,7 +842,10 @@
        height="28.284271"
        x="-1859.8719"
        y="-245.79323"
-       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)" />
+       transform="matrix(-0.00341849,-0.99999416,0.99999416,-0.00341849,0,0)"
+       inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -814,7 +928,10 @@
      x="-1896.0756"
      y="1240.6953"
      id="text4665"
-     sodipodi:linespacing="125%"><tspan
+     sodipodi:linespacing="125%"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
        sodipodi:role="line"
        id="tspan4667"
        x="-1896.0756"
@@ -826,7 +943,10 @@
      y="1346.6953"
      x="-1634.0756"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     xml:space="preserve"><tspan
+     xml:space="preserve"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
        style="font-size:32px"
        y="1346.6953"
        x="-1634.0756"
@@ -838,7 +958,10 @@
      x="-1976.0756"
      y="1456.6953"
      id="text4673"
-     sodipodi:linespacing="125%"><tspan
+     sodipodi:linespacing="125%"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
        sodipodi:role="line"
        id="tspan4675"
        x="-1976.0756"
@@ -850,7 +973,10 @@
      y="1670.6953"
      x="-1914.0756"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     xml:space="preserve"><tspan
+     xml:space="preserve"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
        style="font-size:32px"
        y="1670.6953"
        x="-1914.0756"
@@ -862,7 +988,10 @@
      x="-1658.0756"
      y="1890.6953"
      id="text4681"
-     sodipodi:linespacing="125%"><tspan
+     sodipodi:linespacing="125%"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90"><tspan
        sodipodi:role="line"
        id="tspan4683"
        x="-1658.0756"
@@ -870,7 +999,10 @@
        style="font-size:32px">Archaeplastida</tspan></text>
   <g
      id="g4925"
-     transform="translate(760.8469,907.92511)">
+     transform="translate(760.8469,907.92511)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        ry="33.941124"
        y="42.613712"
@@ -893,7 +1025,10 @@
   </g>
   <g
      id="g4930"
-     transform="translate(1250.1648,930.55252)">
+     transform="translate(1250.1648,930.55252)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:0.78431373;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4783"
@@ -920,7 +1055,10 @@
   </g>
   <g
      id="g4936"
-     transform="translate(1533.0075,469.5189)">
+     transform="translate(1533.0075,469.5189)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        ry="42.645145"
        y="461.9079"
@@ -943,7 +1081,10 @@
   </g>
   <g
      id="g4941"
-     transform="translate(893.78294,721.24892)">
+     transform="translate(893.78294,721.24892)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        ry="42.645145"
        y="696.66736"
@@ -970,7 +1111,10 @@
   </g>
   <g
      id="g4947"
-     transform="translate(1238.8511,704.27835)">
+     transform="translate(1238.8511,704.27835)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:0.78431373;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4787"
@@ -997,11 +1141,14 @@
          id="tspan4771"
          y="1062.2675"
          x="-2302.0491"
-         sodipodi:role="line">* Tiracoides em grana</tspan></text>
+         sodipodi:role="line">* Tilacoides em grana</tspan></text>
   </g>
   <g
      id="g4971"
-     transform="translate(2056.2665,-147.07821)">
+     transform="translate(2056.2665,-147.07821)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        ry="30.78323"
        y="1875.1722"
@@ -1024,7 +1171,10 @@
   </g>
   <g
      id="g4954"
-     transform="translate(2175.0605,39.59798)">
+     transform="translate(2175.0605,39.59798)"
+     inkscape:export-filename="/home/irpagnossin/repositories/AI/AI-0168/src/art/g4963.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        ry="58.290234"
        y="1176.2288"
@@ -1063,7 +1213,9 @@
   </g>
   <g
      id="g4963"
-     transform="translate(2341.9377,-582.65599)">
+     transform="translate(2341.9377,-582.65599)"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90">
     <rect
        style="color:#000000;fill:#ff0000;fill-opacity:0.78431373;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect4791"
