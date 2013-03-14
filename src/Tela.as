@@ -57,6 +57,11 @@ package
 			
 		}
 		
+		public function avaliar():int
+		{
+			return 0;
+		}
+		
 	}
 	
 }

@@ -62,6 +62,7 @@ package
 			configuraCheckboxes();
 			
 			addListeners();
+			criaResposta();
 		}
 		
 		private function addListeners():void 
@@ -95,11 +96,12 @@ package
 			var iniIndex:int;
 			
 			if (check.selected) {
-				if (campo_check[campoSelected] != null) {
-					campo_check[campoSelected].selected = false;
-					checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected]), 1);
+				if (campo_check[campoSelected].length > 0) {
+					campo_check[campoSelected][0].selected = false;
+					checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected][0]), 1);
+					campo_check[campoSelected].splice(0, 1);
 				}
-				campo_check[campoSelected] = check;
+				campo_check[campoSelected].push(check);
 				if (check == ch5) {
 					campoSelected.text = check.label;
 					campoSelected.setTextFormat(textConfigCh5, 42, 69);
@@ -110,8 +112,9 @@ package
 				
 				checksUsados.push(check);
 			}else {
-				campo_check[campoSelected].selected = false;
-				checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected]), 1);
+				campo_check[campoSelected][0].selected = false;
+				checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected][0]), 1);
+				campo_check[campoSelected].splice(0, 1);
 				campoSelected.text = " ";
 				campo_check[campoSelected] = null;
 			}
@@ -173,7 +176,7 @@ package
 			
 			for each (var item:CheckBox in checksUsados) 
 			{
-				if(campo_check[campoSelected] != item) check_lock[item].visible = true;
+				if(campo_check[campoSelected][0] != item) check_lock[item].visible = true;
 			}
 		}
 		
@@ -212,14 +215,14 @@ package
 			campo1.autoSize = TextFieldAutoSize.LEFT;
 			campo1.multiline = true;
 			
-			campo_check[campo1] = null;
-			campo_check[campo2] = null;
-			campo_check[campo3] = null;
-			campo_check[campo4] = null;
-			campo_check[campo5] = null;
-			campo_check[campo6] = null;
-			campo_check[campo7] = null;
-			campo_check[campo8] = null;
+			campo_check[campo1] = [];
+			campo_check[campo2] = [];
+			campo_check[campo3] = [];
+			campo_check[campo4] = [];
+			campo_check[campo5] = [];
+			campo_check[campo6] = [];
+			campo_check[campo7] = [];
+			campo_check[campo8] = [];
 			
 			campo_fundo[campo1] = campo1_rect_s;
 			campo_fundo[campo2] = campo2_rect_s;
@@ -260,8 +263,18 @@ package
 			for (var i:int = 1; i <= 8; i++) 
 			{
 				status.checks["ch" + i] = this["ch" + i].selected;
-				status.campos["campo" + i] = campo_check[this["campo" + i]];
-				status.camposText["campo" + i] = this["campo" + i].text;
+				if (i <= 8) {
+					if (campo_check[this["campo" + i]].length == 0) {
+						status.campos["campo" + i] = "vazio";
+					}else {
+						status.campos["campo" + i] = "";
+						for (var j:int = 0; j < campo_check[this["campo" + i]].length; j++) 
+						{
+							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i]][j].name;
+						}
+					}
+					status.camposText["campo" + i] = this["campo" + i].text;
+				}
 			}
 			
 			return status;
@@ -274,10 +287,21 @@ package
 			for (var i:int = 1; i <= 8; i++) 
 			{
 				this["ch" + i].selected = status.checks["ch" + i];
-				campo_check[this["campo" + i]] = status.campos["campo" + i];
-				this["campo" + i].text = status.camposText["campo" + i];
 				
-				if (status.campos["campo" + i] != null) checksUsados.push(status.campos["campo" + i]);
+				if (i <= 8) {
+					if (status.campos["campo" + i] == "vazio") {
+						campo_check[this["campo" + i]] = [];
+					}else {
+						var camposCheck:Array = String(status.campos["campo" + i]).split(",");
+						for (var j:int = 0; j < camposCheck.length; j++) {
+							var check:CheckBox = this[camposCheck[j]];
+							campo_check[this["campo" + i]].push(check);
+							checksUsados.push(check);
+						}
+					}
+					
+					this["campo" + i].text = status.camposText["campo" + i];
+				}
 			}
 		}
 		
@@ -285,9 +309,11 @@ package
 		{
 			for (var i:int = 1; i <= 8; i++) 
 			{
-				this["ch" + i].selected = false;
-				campo_check[this["campo" + i]] = null;
-				this["campo" + i].text = "";
+				this["ch" + i + "_s"].selected = false;
+				if(i <= 8){
+					campo_check[this["campo" + i]] = [];
+					this["campo" + i].text = "";
+				}
 			}
 			
 			if (campoSelected != null) {
@@ -297,6 +323,48 @@ package
 			}
 			
 			checksUsados = new Vector.<CheckBox>();
+		}
+		
+		private var resp:Dictionary;
+		public function criaResposta():void
+		{
+			resp = new Dictionary();
+			
+			resp[campo1] = ch1;
+			resp[campo2] = ch2;
+			resp[campo3] = ch3;
+			resp[campo4] = ch4;
+			resp[campo5] = ch5;
+			resp[campo6] = ch6;
+			resp[campo7] = ch7;
+			resp[campo8] = ch8;
+		}
+		
+		override public function avaliar():int 
+		{
+			var certas:int = 0;
+			
+			certas += calculaResp(campo1);
+			certas += calculaResp(campo2);
+			certas += calculaResp(campo3);
+			
+			return certas;
+		}
+		
+		private function calculaResp(campo:TextField):int
+		{
+			var certas:int = 0;
+			
+			for (var i:int = 0; i < resp[campo]; i++) 
+			{
+				if (campo_check[campo][0] == resp[campo]) {
+					ret++;
+					break;
+				}
+				
+			}
+			
+			return certas;
 		}
 		
 	}

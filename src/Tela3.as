@@ -62,6 +62,7 @@ package
 			configuraCheckboxes();
 			
 			addListeners();
+			criaResposta();
 		}
 		
 		private function addListeners():void 
@@ -213,10 +214,18 @@ package
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				status.checks["ch" + i] = this["ch" + i].selected;
-				if(i <= 8){
-					status.campos["campo" + i] = campo_check[this["campo" + i]];
-					status.camposText["campo" + i] = this["campo" + i].text;
+				status.checks["ch" + i] = this["ch" + i + "_s"].selected;
+				if (i <= 8) {
+					if (campo_check[this["campo" + i + "_s"]].length == 0) {
+						status.campos["campo" + i] = "vazio";
+					}else {
+						status.campos["campo" + i] = "";
+						for (var j:int = 0; j < campo_check[this["campo" + i + "_s"]].length; j++) 
+						{
+							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i + "_s"]][j].name;
+						}
+					}
+					status.camposText["campo" + i] = this["campo" + i + "_s"].text;
 				}
 			}
 			
@@ -229,12 +238,21 @@ package
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				this["ch" + i].selected = status.checks["ch" + i];
-				if(i <= 8){
-					campo_check[this["campo" + i]] = status.campos["campo" + i];
-					this["campo" + i].text = status.camposText["campo" + i];
+				this["ch" + i + "_s"].selected = status.checks["ch" + i];
+				
+				if (i <= 8) {
+					if (status.campos["campo" + i] == "vazio") {
+						campo_check[this["campo" + i + "_s"]] = [];
+					}else {
+						var camposCheck:Array = String(status.campos["campo" + i]).split(",");
+						for (var j:int = 0; j < camposCheck.length; j++) {
+							var check:CheckBox = this[camposCheck[j]];
+							campo_check[this["campo" + i + "_s"]].push(check);
+							checksUsados.push(check);
+						}
+					}
 					
-					if (status.campos["campo" + i] != null) checksUsados.push(status.campos["campo" + i]);
+					this["campo" + i + "_s"].text = status.camposText["campo" + i];
 				}
 			}
 		}
@@ -243,10 +261,10 @@ package
 		{
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				this["ch" + i].selected = false;
+				this["ch" + i + "_s"].selected = false;
 				if(i <= 8){
-					campo_check[this["campo" + i]] = null;
-					this["campo" + i].text = "";
+					campo_check[this["campo" + i + "_s"]] = [];
+					this["campo" + i + "_s"].text = "";
 				}
 			}
 			
@@ -257,6 +275,55 @@ package
 			}
 			
 			checksUsados = new Vector.<CheckBox>();
+		}
+		
+		private var resp:Dictionary;
+		public function criaResposta():void
+		{
+			resp = new Dictionary();
+			
+			resp[campo1] = [ch1];
+			resp[campo2] = [ch2, ch16];
+			resp[campo3] = [ch4, ch10, ch13, ch12];
+			resp[campo4] = [ch2, ch16];
+			resp[campo5] = [ch2, ch16];
+			resp[campo6] = [ch17, ch9, ch11, ch12];
+			resp[campo7] = [ch7, ch8, ch15];
+			resp[campo8] = [ch18];
+		}
+		
+		override public function avaliar():int 
+		{
+			var certas:int = 0;
+			
+			certas += calculaResp(campo1);
+			certas += calculaResp(campo2);
+			certas += calculaResp(campo3);
+			certas += calculaResp(campo4);
+			certas += calculaResp(campo5);
+			certas += calculaResp(campo6);
+			certas += calculaResp(campo7);
+			certas += calculaResp(campo8);
+			
+			return certas;
+		}
+		
+		private function calculaResp(campo:TextField):int
+		{
+			var certas:int = 0;
+			
+			for (var i:int = 0; i < resp[campo]; i++) 
+			{
+				for each (var item:CheckBox in campo_check[campo]) 
+				{
+					if (item == resp[campo][i]) {
+						ret++;
+						break;
+					}
+				}
+			}
+			
+			return certas;
 		}
 		
 	}

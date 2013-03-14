@@ -51,6 +51,7 @@ package
 			
 			addListeners();
 			lockCheckboxes();
+			criaResposta();
 		}
 		
 		private function addListeners():void 
@@ -210,84 +211,67 @@ package
 		
 		override public function saveStatus():Object 
 		{
-			var obj:Object = new Object();
+			var status:Object = new Object();
 			
-			//Salva o status dos checkbox
-			obj.checks = new Object();
-			obj.checks.ch1 = ch1.selected;
-			obj.checks.ch2 = ch2.selected;
-			obj.checks.ch3 = ch3.selected;
-			obj.checks.ch4 = ch4.selected;
-			obj.checks.ch5 = ch5.selected;
+			status.checks = new Object();
+			status.campos = new Object();
+			status.camposText = new Object();
 			
-			obj.campos = new Object();
-			obj.campos.campo1 = campo_check[campo1];
-			obj.campos.campo2 = campo_check[campo2];
-			obj.campos.campo3 = campo_check[campo3];
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				status.checks["ch" + i] = this["ch" + i].selected;
+				if (i <= 3) {
+					if (campo_check[this["campo" + i]].length == 0) {
+						status.campos["campo" + i] = "vazio";
+					}else {
+						status.campos["campo" + i] = "";
+						for (var j:int = 0; j < campo_check[this["campo" + i]].length; j++) 
+						{
+							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i]][j].name;
+						}
+					}
+					status.camposText["campo" + i] = this["campo" + i].text;
+				}
+			}
 			
-			obj.camposText = new Object();
-			obj.camposText.campo1 = campo1.text;
-			obj.camposText.campo2 = campo2.text;
-			obj.camposText.campo3 = campo3.text;
-			
-			return obj;
+			return status;
 		}
 		
 		override public function restoreStatus(status:Object):void 
 		{
-			ch1.selected = status.checks.ch1;
-			ch2.selected = status.checks.ch2;
-			ch3.selected = status.checks.ch3;
-			ch4.selected = status.checks.ch4;
-			ch5.selected = status.checks.ch5;
-			
-			campo_check[campo1] = status.campos.campo1;
-			campo_check[campo2] = status.campos.campo2;
-			campo_check[campo3] = status.campos.campo3;
-			
-			campo1.text = status.camposText.campo1;
-			campo2.text = status.camposText.campo2;
-			campo3.text = status.camposText.campo3;
-			
-			drawRectangle(campo1, campo_fundo[campo1], bordaRectNormal);
-			drawRectangle(campo2, campo_fundo[campo2], bordaRectNormal);
-			drawRectangle(campo3, campo_fundo[campo3], bordaRectNormal);
-			
 			checksUsados = new Vector.<CheckBox>();
 			
-			for each (var itemCampo1:CheckBox in campo_check[campo1]) 
+			for (var i:int = 1; i <= 5; i++) 
 			{
-				checksUsados.push(itemCampo1);
-			}
-			for each (var itemCampo2:CheckBox in campo_check[campo2]) 
-			{
-				checksUsados.push(itemCampo2);
-			}
-			for each (var itemCampo3:CheckBox in campo_check[campo3]) 
-			{
-				checksUsados.push(itemCampo3);
+				this["ch" + i].selected = status.checks["ch" + i];
+				
+				if (i <= 3) {
+					if (status.campos["campo" + i] == "vazio") {
+						campo_check[this["campo" + i]] = [];
+					}else {
+						var camposCheck:Array = String(status.campos["campo" + i]).split(",");
+						for (var j:int = 0; j < camposCheck.length; j++) {
+							var check:CheckBox = this[camposCheck[j]];
+							campo_check[this["campo" + i]].push(check);
+							checksUsados.push(check);
+						}
+					}
+					
+					this["campo" + i].text = status.camposText["campo" + i];
+				}
 			}
 		}
 		
 		override public function reset():void 
 		{
-			ch1.selected = false;
-			ch2.selected = false;
-			ch3.selected = false;
-			ch4.selected = false;
-			ch5.selected = false;
-			
-			campo_check[campo1] = [];
-			campo_check[campo2] = [];
-			campo_check[campo3] = [];
-			
-			campo1.text = " ";
-			campo2.text = " ";
-			campo3.text = " ";
-			
-			drawRectangle(campo1, campo_fundo[campo1], bordaRectNormal);
-			drawRectangle(campo2, campo_fundo[campo2], bordaRectNormal);
-			drawRectangle(campo3, campo_fundo[campo3], bordaRectNormal);
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				this["ch" + i].selected = false;
+				if(i <= 3){
+					campo_check[this["campo" + i]] = [];
+					this["campo" + i].text = "";
+				}
+			}
 			
 			if (campoSelected != null) {
 				drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
@@ -296,6 +280,45 @@ package
 			}
 			
 			checksUsados = new Vector.<CheckBox>();
+		}
+		
+		private var resp:Dictionary;
+		public function criaResposta():void
+		{
+			resp = new Dictionary();
+			
+			resp[campo1] = [ch1, ch4];
+			resp[campo2] = [ch2, ch5];
+			resp[campo3] = [ch3];
+		}
+		
+		override public function avaliar():int 
+		{
+			var certas:int = 0;
+			
+			certas += calculaResp(campo1);
+			certas += calculaResp(campo2);
+			certas += calculaResp(campo3);
+			
+			return certas;
+		}
+		
+		private function calculaResp(campo:TextField):int
+		{
+			var certas:int = 0;
+			
+			for (var i:int = 0; i < resp[campo]; i++) 
+			{
+				for each (var item:CheckBox in campo_check[campo]) 
+				{
+					if (item == resp[campo][i]) {
+						ret++;
+						break;
+					}
+				}
+			}
+			
+			return certas;
 		}
 		
 	}

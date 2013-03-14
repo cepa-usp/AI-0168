@@ -3,6 +3,7 @@
 	import BaseAssets.BaseMain;
 	import BaseAssets.events.BaseEvent;
 	import BaseAssets.tutorial.CaixaTexto;
+	//import com.adobe.serialization.json.JSON;
 	import fl.controls.CheckBox;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -39,13 +40,13 @@
 		
 		private function addListeners():void 
 		{
-			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyHandler);
+			//stage.addEventListener(KeyboardEvent.KEY_DOWN, keyHandler);
 		}
 		
 		private function keyHandler(e:KeyboardEvent):void 
 		{
 			if (e.keyCode == Keyboard.R) {
-				telas[1].restoreStatus(statusTeste);
+				
 			}
 		}
 		
@@ -132,14 +133,11 @@
 		
 		override public function reset(e:MouseEvent = null):void 
 		{
-			statusTeste = telas[1].saveStatus();
 			for (var i:int = 0; i < telas.length - 1; i++) 
 			{
 				telas[i].reset();
 			}
 		}
-		
-		private var statusTeste:Object;
 		
 		//---------------- Tutorial -----------------------
 		
