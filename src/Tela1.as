@@ -312,7 +312,7 @@ package
 				for each (var item:CheckBox in campo_check[campo]) 
 				{
 					if (item == resp[campo][i]) {
-						ret++;
+						certas++;
 						break;
 					}
 				}

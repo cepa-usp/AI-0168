@@ -3,6 +3,7 @@ package
 	import fl.controls.CheckBox;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.utils.Dictionary;
@@ -48,7 +49,8 @@ package
 		private var campo_check:Dictionary = new Dictionary();
 		
 		private var checksUsados:Vector.<CheckBox> = new Vector.<CheckBox>();
-
+		private var textUp:Array;
+		private var textUpInicial:Dictionary = new Dictionary();
 		
 		public function Tela3() {
 			if (stage) init();
@@ -63,6 +65,12 @@ package
 			
 			addListeners();
 			criaResposta();
+			
+			textUp = [campo1_s, campo3_s, campo6_s, campo8_s];
+			textUpInicial[campo1_s] = new Point(campo1_s.y, campo1_s.height);
+			textUpInicial[campo3_s] = new Point(campo3_s.y, campo3_s.height);
+			textUpInicial[campo6_s] = new Point(campo6_s.y, campo6_s.height);
+			textUpInicial[campo8_s] = new Point(campo8_s.y, campo8_s.height);
 		}
 		
 		private function addListeners():void 
@@ -111,6 +119,12 @@ package
 					}
 				}
 			}
+			
+			if (textUp.indexOf(campoSelected) >= 0) {
+				var ptInicial:Point = textUpInicial[campoSelected];
+				campoSelected.y = ptInicial.x - (campoSelected.height - ptInicial.y);
+			}
+			
 			drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectSelected);
 		}
 		
@@ -317,7 +331,7 @@ package
 				for each (var item:CheckBox in campo_check[campo]) 
 				{
 					if (item == resp[campo][i]) {
-						ret++;
+						certas++;
 						break;
 					}
 				}

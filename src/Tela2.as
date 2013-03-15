@@ -358,7 +358,7 @@ package
 			for (var i:int = 0; i < resp[campo]; i++) 
 			{
 				if (campo_check[campo][0] == resp[campo]) {
-					ret++;
+					certas++;
 					break;
 				}
 				
