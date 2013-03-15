@@ -63,6 +63,7 @@ package
 			
 			addListeners();
 			criaResposta();
+			addListenerBarras();
 		}
 		
 		private function addListeners():void 
@@ -212,8 +213,8 @@ package
 			campo7 = campo7_s;
 			campo8 = campo8_s;
 			
-			campo1.autoSize = TextFieldAutoSize.LEFT;
-			campo1.multiline = true;
+			//campo1.autoSize = TextFieldAutoSize.LEFT;
+			//campo1.multiline = true;
 			
 			campo_check[campo1] = [];
 			campo_check[campo2] = [];
@@ -313,6 +314,7 @@ package
 				if(i <= 8){
 					campo_check[this["campo" + i]] = [];
 					this["campo" + i].text = "";
+					drawRectangle(this["campo" + i], campo_fundo[this["campo" + i]], bordaRectNormal);
 				}
 			}
 			
@@ -355,7 +357,7 @@ package
 		{
 			var certas:int = 0;
 			
-			for (var i:int = 0; i < resp[campo]; i++) 
+			for (var i:int = 0; i < resp[campo].length; i++) 
 			{
 				if (campo_check[campo][0] == resp[campo]) {
 					certas++;
@@ -365,6 +367,48 @@ package
 			}
 			
 			return certas;
+		}
+		
+		private var barra_ret:Dictionary = new Dictionary();
+		public function addListenerBarras():void
+		{
+			ret1.visible = false;
+			ret2.visible = false;
+			ret3.visible = false;
+			ret4.visible = false;
+			ret5.visible = false;
+			
+			barra1.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra2.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra3.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra4.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra5.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			
+			barra1.buttonMode = true;
+			barra2.buttonMode = true;
+			barra3.buttonMode = true;
+			barra4.buttonMode = true;
+			barra5.buttonMode = true;
+			
+			barra_ret[barra1] = ret1;
+			barra_ret[barra2] = ret2;
+			barra_ret[barra3] = ret3;
+			barra_ret[barra4] = ret4;
+			barra_ret[barra5] = ret5;
+		}
+		
+		private function overBarra(e:MouseEvent):void 
+		{
+			var barra:MovieClip = MovieClip(e.target);
+			barra.addEventListener(MouseEvent.MOUSE_OUT, outBarra);
+			barra_ret[barra].visible = true;
+		}
+		
+		private function outBarra(e:MouseEvent):void 
+		{
+			var barra:MovieClip = MovieClip(e.target);
+			barra.removeEventListener(MouseEvent.MOUSE_OUT, outBarra);
+			barra_ret[barra].visible = false;
 		}
 		
 	}

@@ -1,9 +1,14 @@
 ﻿package 
 {
-	import BaseAssets.BaseMain;
-	import BaseAssets.events.BaseEvent;
-	import BaseAssets.tutorial.CaixaTexto;
-	//import com.adobe.serialization.json.JSON;
+	import cepa.ai.AI;
+	import cepa.ai.AIInstance;
+	import cepa.ai.AIObserver;
+	import cepa.ai.IPlayInstance;
+	import cepa.eval.ProgressiveEvaluator;
+	import cepa.tutorial.CaixaTextoNova;
+	import cepa.tutorial.Tutorial;
+	import flash.display.SimpleButton;
+	import flash.filters.ColorMatrixFilter;
 	import fl.controls.CheckBox;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -21,26 +26,94 @@
 	 * ...
 	 * @author Alexandre
 	 */
-	public class Main extends BaseMain
+	public class Main extends MovieClip implements AIObserver, AIInstance
 	{
+		private var ai:AI;
+		private var layerAtividade:Sprite = new Sprite();
+		private var eval:ProgressiveEvaluator;
+		private var btAval:SimpleButton;
+		
+		/*
+		 * Filtro de conversão para tons de cinza.
+		 */
+		protected const GRAYSCALE_FILTER:ColorMatrixFilter = new ColorMatrixFilter([
+			0.2225, 0.7169, 0.0606, 0, 0,
+			0.2225, 0.7169, 0.0606, 0, 0,
+			0.2225, 0.7169, 0.0606, 0, 0,
+			0.0000, 0.0000, 0.0000, 1, 0
+		]);
+		
+		protected function lock(bt:*):void
+		{
+			bt.filters = [GRAYSCALE_FILTER];
+			bt.alpha = 0.5;
+			bt.mouseEnabled = false;			
+		}
+		
+		protected function unlock(bt:*):void
+		{
+			bt.filters = [];
+			bt.alpha = 1;
+			bt.mouseEnabled = true;
+		}
 		
 		public function Main() 
 		{
-			
+			if (stage) init();
+			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
-		override protected function init():void 
+		private function init(e:Event = null):void 
 		{
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			
+			ai = new AI(this);
+			ai.container.messageLabel.visible = false;
+			ai.addObserver(this);
+			ai.container.optionButtons.addAllButtons();
+			ai.container.setMessageTextVisible(false);
+			ai.container.setAboutScreen(new AboutScreen168());
+			ai.container.setInfoScreen(new InstScreen168());
+			
+			eval = new ProgressiveEvaluator(ai);
+			eval.minimumScoreForAcceptance = .7
+			eval.minimumTrialsForParticipScore = 4;
+			ai.evaluator = eval;
+			
+			ai.container.addChild(layerAtividade);
+			
 			configuraMenuNavegacao();
 			iniciaTelas();
 			addListeners();
 			
-			//iniciaTutorial();
+			criaTutorial();
+			
+			ai.initialize();
+			
+			//onTutorialClick();
+		}
+		
+		private var tutorial:Tutorial;
+		private function criaTutorial():void 
+		{
+			tutorial = new Tutorial();
+			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(350, 200), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(400, 150), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 100), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 300), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
 		}
 		
 		private function addListeners():void 
 		{
 			//stage.addEventListener(KeyboardEvent.KEY_DOWN, keyHandler);
+			btAval = btAvaliar;
+			layerAtividade.addChild(btAval);
+			btAval.addEventListener(MouseEvent.CLICK, avaliaTela);
+		}
+		
+		private function avaliaTela(e:MouseEvent):void 
+		{
+			ai.container.messageBox("Você acertou " + indiceTela[indiceNavegacao].avaliar() + " itens.", null);
 		}
 		
 		private function keyHandler(e:KeyboardEvent):void 
@@ -100,7 +173,10 @@
 				
 				indiceNavegacao++;
 				navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
-				if (indiceNavegacao == indiceNavegacaoMax) lock(navegacao.avancar);
+				if (indiceNavegacao == indiceNavegacaoMax) {
+					lock(navegacao.avancar);
+					btAval.visible = false;
+				}
 				
 				carregaTela(indiceNavegacao);
 			}
@@ -117,6 +193,7 @@
 				if (indiceNavegacao == indiceNavegacaoMin) lock(navegacao.voltar);
 				
 				carregaTela(indiceNavegacao);
+				btAval.visible = true;
 			}
 			unlock(navegacao.avancar);
 		}
@@ -131,7 +208,7 @@
 			indiceTela[indiceNavegacao].visible = true;
 		}
 		
-		override public function reset(e:MouseEvent = null):void 
+		/*override */public function reset(e:MouseEvent = null):void 
 		{
 			for (var i:int = 0; i < telas.length - 1; i++) 
 			{
@@ -139,77 +216,58 @@
 			}
 		}
 		
-		//---------------- Tutorial -----------------------
+		/* INTERFACE cepa.ai.AIObserver */
 		
-		private var balao:CaixaTexto;
-		private var pointsTuto:Array;
-		private var tutoBaloonPos:Array;
-		private var tutoPos:int;
-		private var tutoSequence:Array;
-		
-		override public function iniciaTutorial(e:MouseEvent = null):void  
+		public function onResetClick():void 
 		{
-			blockAI();
-			
-			tutoPos = 0;
-			if(balao == null){
-				balao = new CaixaTexto();
-				layerTuto.addChild(balao);
-				balao.visible = false;
-				
-				tutoSequence = ["Veja aqui as orientações.",
-								"Esta é uma função polinomial do segundo grau escolhida aleatoriamente.",
-								"Arraste este ponto para a posição do vértice da função (arraste-o de volta para a tabela ou pressione 'delete' para removê-lo do plano cartesiano).",
-								"Arraste estes pontos para as posições das raízes (se houver).",
-								"Indique a concavidade da curva.",
-								"Indique se o vértice é um máximo ou um mínimo da função.",
-								"Pressione este botão para verificar sua resposta.",
-								"Pressione este botão para criar um novo exercício."];
-				
-				pointsTuto = 	[new Point(650, 535),
-								new Point(560 , 20),
-								new Point(420 , 486),
-								new Point(550 , 486),
-								new Point(275 , 508),
-								new Point(275 , 556),
-								new Point(452 , 565),
-								new Point(575 , 565)];
-								
-				tutoBaloonPos = [[CaixaTexto.RIGHT, CaixaTexto.LAST],
-								[CaixaTexto.TOP, CaixaTexto.LAST],
-								[CaixaTexto.BOTTON, CaixaTexto.CENTER],
-								[CaixaTexto.BOTTON, CaixaTexto.LAST],
-								[CaixaTexto.LEFT, CaixaTexto.LAST],
-								[CaixaTexto.LEFT, CaixaTexto.LAST],
-								[CaixaTexto.BOTTON, CaixaTexto.CENTER],
-								[CaixaTexto.BOTTON, CaixaTexto.LAST]];
-			}
-			balao.removeEventListener(BaseEvent.NEXT_BALAO, closeBalao);
-			
-			balao.setText(tutoSequence[tutoPos], tutoBaloonPos[tutoPos][0], tutoBaloonPos[tutoPos][1]);
-			balao.setPosition(pointsTuto[tutoPos].x, pointsTuto[tutoPos].y);
-			balao.addEventListener(BaseEvent.NEXT_BALAO, closeBalao);
-			balao.addEventListener(BaseEvent.CLOSE_BALAO, iniciaAi);
+			reset(null);
 		}
 		
-		private function closeBalao(e:Event):void 
+		public function onScormFetch():void 
 		{
-			tutoPos++;
-			if (tutoPos >= tutoSequence.length) {
-				balao.removeEventListener(BaseEvent.NEXT_BALAO, closeBalao);
-				balao.visible = false;
-				iniciaAi(null);
-			}else {
-				balao.setText(tutoSequence[tutoPos], tutoBaloonPos[tutoPos][0], tutoBaloonPos[tutoPos][1]);
-				balao.setPosition(pointsTuto[tutoPos].x, pointsTuto[tutoPos].y);
-			}
+			
 		}
 		
-		private function iniciaAi(e:BaseEvent):void 
+		public function onScormSave():void 
 		{
-			balao.removeEventListener(BaseEvent.CLOSE_BALAO, iniciaAi);
-			balao.removeEventListener(BaseEvent.NEXT_BALAO, closeBalao);
-			unblockAI();
+			
+		}
+		
+		public function onStatsClick():void 
+		{
+			
+		}
+		
+		public function onTutorialClick():void 
+		{
+			tutorial.iniciar(stage, true);
+		}
+		
+		public function onScormConnected():void 
+		{
+			
+		}
+		
+		public function onScormConnectionError():void 
+		{
+			
+		}
+		
+		/* INTERFACE cepa.ai.AIInstance */
+		
+		public function getData():Object 
+		{
+			return new Object();
+		}
+		
+		public function readData(obj:Object)
+		{
+			
+		}
+		
+		public function createNewPlayInstance():IPlayInstance 
+		{
+			return new PlayInstance168();
 		}
 		
 	}

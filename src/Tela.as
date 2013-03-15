@@ -2,6 +2,7 @@ package
 {
 	import fl.controls.CheckBox;
 	import flash.display.MovieClip;
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;

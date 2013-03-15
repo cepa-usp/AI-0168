@@ -65,6 +65,7 @@ package
 			
 			addListeners();
 			criaResposta();
+			addListenerBarras();
 			
 			textUp = [campo1_s, campo3_s, campo6_s, campo8_s];
 			textUpInicial[campo1_s] = new Point(campo1_s.y, campo1_s.height);
@@ -279,6 +280,7 @@ package
 				if(i <= 8){
 					campo_check[this["campo" + i + "_s"]] = [];
 					this["campo" + i + "_s"].text = "";
+					drawRectangle(this["campo" + i + "_s"], campo_fundo[this["campo" + i + "_s"]], bordaRectNormal);
 				}
 			}
 			
@@ -297,11 +299,11 @@ package
 			resp = new Dictionary();
 			
 			resp[campo1] = [ch1];
-			resp[campo2] = [ch2, ch16];
-			resp[campo3] = [ch4, ch10, ch13, ch12];
+			resp[campo2] = [ch3];
+			resp[campo3] = [ch4, ch10, ch13, ch12, ch6];
 			resp[campo4] = [ch2, ch16];
-			resp[campo5] = [ch2, ch16];
-			resp[campo6] = [ch17, ch9, ch11, ch12];
+			resp[campo5] = [ch5, ch14];
+			resp[campo6] = [ch17, ch9, ch11, ch12, ch6];
 			resp[campo7] = [ch7, ch8, ch15];
 			resp[campo8] = [ch18];
 		}
@@ -310,14 +312,14 @@ package
 		{
 			var certas:int = 0;
 			
-			certas += calculaResp(campo1);
-			certas += calculaResp(campo2);
-			certas += calculaResp(campo3);
-			certas += calculaResp(campo4);
-			certas += calculaResp(campo5);
-			certas += calculaResp(campo6);
-			certas += calculaResp(campo7);
-			certas += calculaResp(campo8);
+			certas += calculaResp(campo1_s);
+			certas += calculaResp(campo2_s);
+			certas += calculaResp(campo3_s);
+			certas += calculaResp(campo4_s);
+			certas += calculaResp(campo5_s);
+			certas += calculaResp(campo6_s);
+			certas += calculaResp(campo7_s);
+			certas += calculaResp(campo8_s);
 			
 			return certas;
 		}
@@ -326,7 +328,7 @@ package
 		{
 			var certas:int = 0;
 			
-			for (var i:int = 0; i < resp[campo]; i++) 
+			for (var i:int = 0; i < resp[campo].length; i++) 
 			{
 				for each (var item:CheckBox in campo_check[campo]) 
 				{
@@ -338,6 +340,48 @@ package
 			}
 			
 			return certas;
+		}
+		
+		private var barra_ret:Dictionary = new Dictionary();
+		public function addListenerBarras():void
+		{
+			ret1.visible = false;
+			ret2.visible = false;
+			ret3.visible = false;
+			ret4.visible = false;
+			ret5.visible = false;
+			
+			barra1.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra2.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra3.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra4.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			barra5.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			
+			barra1.buttonMode = true;
+			barra2.buttonMode = true;
+			barra3.buttonMode = true;
+			barra4.buttonMode = true;
+			barra5.buttonMode = true;
+			
+			barra_ret[barra1] = ret1;
+			barra_ret[barra2] = ret2;
+			barra_ret[barra3] = ret3;
+			barra_ret[barra4] = ret4;
+			barra_ret[barra5] = ret5;
+		}
+		
+		private function overBarra(e:MouseEvent):void 
+		{
+			var barra:MovieClip = MovieClip(e.target);
+			barra.addEventListener(MouseEvent.MOUSE_OUT, outBarra);
+			barra_ret[barra].visible = true;
+		}
+		
+		private function outBarra(e:MouseEvent):void 
+		{
+			var barra:MovieClip = MovieClip(e.target);
+			barra.removeEventListener(MouseEvent.MOUSE_OUT, outBarra);
+			barra_ret[barra].visible = false;
 		}
 		
 	}

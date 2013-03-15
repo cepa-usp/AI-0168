@@ -6,7 +6,7 @@
   </metadata>
   <organizations default="CEPA">
     <organization identifier="CEPA" structure="Hierárquico">
-      <title>Função polinomial do segundo grau</title>
+      <title>Cladograma</title>
       <item identifier="only_item" identifierref="item1_resource" isvisible="true" parameters="?tentativas=4">
         <title>Exercício</title>
       </item>
@@ -20,7 +20,7 @@
       <file href="./js/jquery-parsequery.min.js" />
       <file href="./js/swfobject.js" />
       <file href="./js/scorm_wrapper.min.js" />
-      <file href="./swf/AI-0172.swf" />
+      <file href="./swf/AI-0168.swf" />
       <file href="./swf/AI_Loader.swf" />
       <file href="./swf/expressInstall.swf" />
     </resource>
