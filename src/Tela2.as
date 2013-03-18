@@ -177,7 +177,8 @@ package
 			
 			for each (var item:CheckBox in checksUsados) 
 			{
-				if(campo_check[campoSelected][0] != item) check_lock[item].visible = true;
+				//if(campo_check[campoSelected][0] != item) check_lock[item].visible = true;
+				if(campo_check[campoSelected].indexOf(item) < 0) check_lock[item].visible = true;
 			}
 		}
 		
@@ -349,6 +350,11 @@ package
 			certas += calculaResp(campo1);
 			certas += calculaResp(campo2);
 			certas += calculaResp(campo3);
+			certas += calculaResp(campo4);
+			certas += calculaResp(campo5);
+			certas += calculaResp(campo6);
+			certas += calculaResp(campo7);
+			certas += calculaResp(campo8);
 			
 			return certas;
 		}
@@ -357,14 +363,14 @@ package
 		{
 			var certas:int = 0;
 			
-			for (var i:int = 0; i < resp[campo].length; i++) 
-			{
+			//for (var i:int = 0; i < resp[campo].length; i++) 
+			//{
 				if (campo_check[campo][0] == resp[campo]) {
 					certas++;
-					break;
+					//break;
 				}
 				
-			}
+			//}
 			
 			return certas;
 		}
