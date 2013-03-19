@@ -180,8 +180,7 @@ package BaseAssets.status
 		
 		public function recoverStatus():Object
 		{
-			var obj:Object = new Object();
-			trace(mementoSerialized);
+			var obj:Object;
 			if(mementoSerialized) obj = JSON.parse(mementoSerialized);
 			return obj;
 		}

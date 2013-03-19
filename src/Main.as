@@ -49,9 +49,12 @@
 			criaTutorial();
 			
 			saveAPI = new SaveAPI();
-			recoverStatus(saveAPI.recoverStatus());
 			
-			if(!saveAPI.iniciada) iniciaTutorial();
+			var status:Object = saveAPI.recoverStatus();
+			
+			if (status != null) recoverStatus(status);
+			else iniciaTutorial();
+			
 		}
 		
 		private function recoverStatus(status:Object):void 
@@ -59,6 +62,22 @@
 			if (status.tela1) indiceTela[1].restoreStatus(status.tela1);
 			if (status.tela2) indiceTela[2].restoreStatus(status.tela2);
 			if (status.tela3) indiceTela[3].restoreStatus(status.tela3);
+			
+			indiceNavegacao = status.indiceNavegacao;
+			
+			finalizada[1] = status.finalizada.tela1;
+			finalizada[2] = status.finalizada.tela2;
+			finalizada[3] = status.finalizada.tela3;
+			
+			pontuacao[1] = status.pontuacao.tela1;
+			pontuacao[2] = status.pontuacao.tela2;
+			pontuacao[3] = status.pontuacao.tela3;
+			
+			tentativas[1] = status.tentativas.tela1;
+			tentativas[2] = status.tentativas.tela2;
+			tentativas[3] = status.tentativas.tela3;
+			
+			carregaTela(indiceNavegacao);
 		}
 		
 		private function saveStatus():void
@@ -68,6 +87,24 @@
 			status.tela1 = indiceTela[1].saveStatus();
 			status.tela2 = indiceTela[2].saveStatus();
 			status.tela3 = indiceTela[3].saveStatus();
+			
+			status.finalizada = new Object();
+			status.pontuacao = new Object();
+			status.tentativas = new Object();
+			
+			status.indiceNavegacao = indiceNavegacao;
+			
+			status.finalizada.tela1 = finalizada[1];
+			status.finalizada.tela2 = finalizada[2];
+			status.finalizada.tela3 = finalizada[3];
+			
+			status.pontuacao.tela1 = pontuacao[1];
+			status.pontuacao.tela2 = pontuacao[2];
+			status.pontuacao.tela3 = pontuacao[3];
+			
+			status.tentativas.tela1 = tentativas[1];
+			status.tentativas.tela2 = tentativas[2];
+			status.tentativas.tela3 = tentativas[3];
 			
 			saveAPI.saveStatus(status);
 		}
@@ -246,14 +283,14 @@
 				
 				indiceNavegacao++;
 				navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
-				if (indiceNavegacao == indiceNavegacaoMax) {
+				/*if (indiceNavegacao == indiceNavegacaoMax) {
 					lock(navegacao.avancar);
 					btAval.visible = false;
-				}
+				}*/
 				
 				carregaTela(indiceNavegacao);
 			}
-			unlock(navegacao.voltar);
+			//unlock(navegacao.voltar);
 		}
 		
 		private function f_voltar(e:MouseEvent):void 
@@ -268,7 +305,7 @@
 				carregaTela(indiceNavegacao);
 				btAval.visible = true;
 			}
-			unlock(navegacao.avancar);
+			//unlock(navegacao.avancar);
 		}
 		
 		private function descarregaTela(indice:int):void 
@@ -284,6 +321,9 @@
 				informacoes.info.text = titulos[indiceNavegacao];
 				informacoes.tentativa.text = "";
 				informacoes.pontos.text = "";
+				lock(navegacao.avancar);
+				unlock(navegacao.voltar);
+				btAval.visible = false;
 			}else {
 				if (finalizada[indiceNavegacao]) {
 					indiceTela[indiceNavegacao].mouseChildren = false;
@@ -292,6 +332,13 @@
 				informacoes.info.text = titulos[indiceNavegacao];
 				informacoes.tentativa.text = "Tentativa " + tentativas[indice] + " de " + maxTentativas;
 				informacoes.pontos.text = pontuacao[indice] + " pontos";
+				if (indiceNavegacao == 1) {
+					lock(navegacao.voltar);
+					unlock(navegacao.avancar);
+				}else {
+					unlock(navegacao.voltar);
+					unlock(navegacao.avancar);
+				}
 			}
 		}
 		
