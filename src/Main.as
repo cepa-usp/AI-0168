@@ -53,7 +53,10 @@
 			var status:Object = saveAPI.recoverStatus();
 			
 			if (status != null) recoverStatus(status);
-			else iniciaTutorial();
+			else {
+				carregaTela(1);
+				iniciaTutorial();
+			}
 			
 		}
 		
@@ -246,7 +249,7 @@
 			indiceTela[3].addEventListener("checkClicked", checkClicked);
 			
 			//telas[0].visible = true;
-			carregaTela(1);
+			//carregaTela(1);
 		}
 		
 		private function checkClicked(e:Event):void 
@@ -282,11 +285,6 @@
 				descarregaTela(indiceNavegacao);
 				
 				indiceNavegacao++;
-				navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
-				/*if (indiceNavegacao == indiceNavegacaoMax) {
-					lock(navegacao.avancar);
-					btAval.visible = false;
-				}*/
 				
 				carregaTela(indiceNavegacao);
 			}
@@ -299,11 +297,8 @@
 				descarregaTela(indiceNavegacao);
 				
 				indiceNavegacao--;
-				navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
-				if (indiceNavegacao == indiceNavegacaoMin) lock(navegacao.voltar);
 				
 				carregaTela(indiceNavegacao);
-				btAval.visible = true;
 			}
 			//unlock(navegacao.avancar);
 		}
@@ -316,6 +311,7 @@
 		
 		private function carregaTela(indice:int):void 
 		{
+			navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
 			indiceTela[indiceNavegacao].visible = true;
 			if (indiceNavegacao == 4) {
 				informacoes.info.text = titulos[indiceNavegacao];
@@ -339,6 +335,7 @@
 					unlock(navegacao.voltar);
 					unlock(navegacao.avancar);
 				}
+				btAval.visible = true;
 			}
 		}
 		
