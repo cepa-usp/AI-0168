@@ -1,6 +1,7 @@
 package 
 {
 	import fl.controls.CheckBox;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
@@ -98,35 +99,36 @@ package
 			if (check.selected) {
 				campo_check[campoSelected].push(check);
 				checksUsados.push(check);
-				//campoSelected.text = check.label;
-				if (campoSelected.text == " ") campoSelected.text = "• " + check.label;
-				else {
-					campoSelected.text += "\n• " + check.label;
-				}
 			}else {
 				var indexCheck:int = campo_check[campoSelected].indexOf(check);
 				campo_check[campoSelected].splice(indexCheck, 1);
 				checksUsados.splice(checksUsados.indexOf(check), 1);
-				//campoSelected.text.replace(check.label, "");
-				if (campo_check[campoSelected].length == 0) {
-					campoSelected.text = " ";
-				}else {
-					if (indexCheck == 0) {
-						iniIndex = campoSelected.text.indexOf("• " + check.label);
-						campoSelected.replaceText(iniIndex, iniIndex + check.label.length + 3, "");
-					}else {
-						iniIndex = campoSelected.text.indexOf("• " + check.label);
-						campoSelected.replaceText(iniIndex, iniIndex + check.label.length + 3, "");
-					}
+			}
+			
+			updateTextField(campoSelected);
+			dispatchEvent(new Event("checkClicked"));
+		}
+		
+		private function updateTextField(tf:TextField, bordaSelected:Boolean = true):void
+		{
+			var arrayChecks:Array = campo_check[tf];
+			if (arrayChecks.length == 0) {
+				tf.text = " ";
+			}else{
+				for (var i:int = 0; i < arrayChecks.length; i++) 
+				{
+					if (i == 0) tf.text = "• " + arrayChecks[i].label;
+					else tf.text += "\n• " + arrayChecks[i].label;
 				}
 			}
 			
-			if (textUp.indexOf(campoSelected) >= 0) {
-				var ptInicial:Point = textUpInicial[campoSelected];
-				campoSelected.y = ptInicial.x - (campoSelected.height - ptInicial.y);
+			if (textUp.indexOf(tf) >= 0) {
+				var ptInicial:Point = textUpInicial[tf];
+				tf.y = ptInicial.x - (tf.height - ptInicial.y);
 			}
 			
-			drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectSelected);
+			if (bordaSelected) drawRectangle(tf, campo_fundo[tf], bordaRectSelected);
+			else drawRectangle(tf, campo_fundo[tf], bordaRectNormal);
 		}
 		
 		private function stageClick(e:MouseEvent):void 
@@ -225,7 +227,7 @@ package
 			
 			status.checks = new Object();
 			status.campos = new Object();
-			status.camposText = new Object();
+			//status.camposText = new Object();
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
@@ -240,7 +242,7 @@ package
 							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i + "_s"]][j].name;
 						}
 					}
-					status.camposText["campo" + i] = this["campo" + i + "_s"].text;
+					//status.camposText["campo" + i] = this["campo" + i + "_s"].text;
 				}
 			}
 			
@@ -267,7 +269,8 @@ package
 						}
 					}
 					
-					this["campo" + i + "_s"].text = status.camposText["campo" + i];
+					updateTextField(this["campo" + i + "_s"], false);
+					//this["campo" + i + "_s"].text = status.camposText["campo" + i];
 				}
 			}
 		}
@@ -279,16 +282,19 @@ package
 				this["ch" + i + "_s"].selected = false;
 				if(i <= 8){
 					campo_check[this["campo" + i + "_s"]] = [];
-					this["campo" + i + "_s"].text = "";
+					this["campo" + i + "_s"].text = " ";
 					drawRectangle(this["campo" + i + "_s"], campo_fundo[this["campo" + i + "_s"]], bordaRectNormal);
 				}
 			}
 			
-			if (campoSelected != null) {
-				drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
-				campoSelected = null;
-				stage.focus = null;
-			}
+			//if (campoSelected != null) {
+				//drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
+				//campoSelected = null;
+				//stage.focus = null;
+			//}
+			
+			campoSelected = null;
+			stage.focus = null;
 			
 			checksUsados = new Vector.<CheckBox>();
 		}
@@ -351,11 +357,7 @@ package
 			ret4.visible = false;
 			ret5.visible = false;
 			
-			barra1.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra2.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra3.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra4.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra5.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, verifyPosition);
 			
 			barra1.buttonMode = true;
 			barra2.buttonMode = true;
@@ -370,18 +372,16 @@ package
 			barra_ret[barra5] = ret5;
 		}
 		
-		private function overBarra(e:MouseEvent):void 
+		private function verifyPosition(e:MouseEvent):void 
 		{
-			var barra:MovieClip = MovieClip(e.target);
-			barra.addEventListener(MouseEvent.MOUSE_OUT, outBarra);
-			barra_ret[barra].visible = true;
-		}
-		
-		private function outBarra(e:MouseEvent):void 
-		{
-			var barra:MovieClip = MovieClip(e.target);
-			barra.removeEventListener(MouseEvent.MOUSE_OUT, outBarra);
-			barra_ret[barra].visible = false;
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				if (MovieClip(this["barra" + i]).hitTestPoint(stage.mouseX, stage.mouseY)) {
+					barra_ret[this["barra" + i]].visible = true;
+				}else {
+					barra_ret[this["barra" + i]].visible = false;
+				}
+			}
 		}
 		
 	}

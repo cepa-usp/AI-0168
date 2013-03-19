@@ -181,6 +181,7 @@ package BaseAssets.status
 		public function recoverStatus():Object
 		{
 			var obj:Object = new Object();
+			trace(mementoSerialized);
 			if(mementoSerialized) obj = JSON.parse(mementoSerialized);
 			return obj;
 		}

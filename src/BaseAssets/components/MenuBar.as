@@ -91,7 +91,7 @@ package BaseAssets.components
 			}
 			
 			background.graphics.clear();
-			background.graphics.beginFill(0xDBDBDB, 1);
+			background.graphics.beginFill(0xDBDBDB, 0);
 			if (vertical) background.graphics.drawRoundRect(0, (doublInicialFinalBorder ? -totalHeight - HEIGHT_BORDER : -totalHeight), BTN_WIDTH, (doublInicialFinalBorder ? totalHeight + HEIGHT_BORDER : totalHeight), ROUND_RECT_ELIPSE, ROUND_RECT_ELIPSE);
 			else background.graphics.drawRoundRect(0, -BTN_WIDTH, (doublInicialFinalBorder ? totalHeight + HEIGHT_BORDER : totalHeight), BTN_WIDTH, ROUND_RECT_ELIPSE, ROUND_RECT_ELIPSE);
 		}

@@ -137,9 +137,9 @@
 					tentativas[indiceNavegacao]++;
 					var restantes:int = maxTentativas - tentativas[indiceNavegacao] + 1;
 					if (restantes == 1) {
-						feedText += "\nVocê possui mais " + restantes + "tentativa nessa tela.";
+						feedText += "\nVocê possui mais " + restantes + " tentativa nessa tela.";
 					}else{
-						feedText += "\nVocê possui mais " + restantes + "tentativas nessa tela.";
+						feedText += "\nVocê possui mais " + restantes + " tentativas nessa tela.";
 					}
 				}
 			}
@@ -199,13 +199,22 @@
 			finalizada[2] = false;
 			finalizada[3] = false;
 			
-			titulos[1] = "";
-			titulos[2] = "";
-			titulos[3] = "";
+			titulos[1] = "Associe o nome do grande grupo de plantas ao respectivo quadro";
+			titulos[2] = "Associe a característica ou nome que melhor descreve o grande grupo de plantas";
+			titulos[3] = "Associe o conjunto de sinapomorfias ao respectivo grande grupo de plantas";
 			titulos[4] = "Cladograma completo";
+			
+			indiceTela[1].addEventListener("checkClicked", checkClicked);
+			indiceTela[2].addEventListener("checkClicked", checkClicked);
+			indiceTela[3].addEventListener("checkClicked", checkClicked);
 			
 			//telas[0].visible = true;
 			carregaTela(1);
+		}
+		
+		private function checkClicked(e:Event):void 
+		{
+			saveStatus();
 		}
 		
 		//Dados navegação:
@@ -265,7 +274,7 @@
 		private function descarregaTela(indice:int):void 
 		{
 			indiceTela[indiceNavegacao].visible = false;
-			saveStatus();
+			//saveStatus();
 		}
 		
 		private function carregaTela(indice:int):void 
@@ -290,7 +299,7 @@
 		{
 			for (var i:int = 0; i < telas.length - 1; i++) 
 			{
-				telas[i].reset();
+				if(i <= 2) telas[i].reset();
 			}
 		}
 		

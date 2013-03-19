@@ -102,25 +102,46 @@ package
 					checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected][0]), 1);
 					campo_check[campoSelected].splice(0, 1);
 				}
-				campo_check[campoSelected].push(check);
-				if (check == ch5) {
-					campoSelected.text = check.label;
-					campoSelected.setTextFormat(textConfigCh5, 42, 69);
-					//Provável ancestral das plantas terrestres (Coleochaetales e Charales)
-				}else{
-					campoSelected.text = check.label;
-				}
 				
+				campo_check[campoSelected].push(check);
 				checksUsados.push(check);
+				
 			}else {
 				campo_check[campoSelected][0].selected = false;
 				checksUsados.splice(checksUsados.indexOf(campo_check[campoSelected][0]), 1);
 				campo_check[campoSelected].splice(0, 1);
-				campoSelected.text = " ";
-				campo_check[campoSelected] = null;
 			}
-			//drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectSelected);
+			
+			
+			updateTextField(campoSelected);
+			dispatchEvent(new Event("checkClicked"));
 		}
+		
+		
+		private function updateTextField(tf:TextField, bordaSelected:Boolean = true):void
+		{
+			var arrayChecks:Array = campo_check[tf];
+			
+			if (arrayChecks.length == 0) {
+				tf.text = " \n ";
+			}else{
+				for (var i:int = 0; i < arrayChecks.length; i++) 
+				{
+					tf.text = arrayChecks[i].label;
+					if (arrayChecks[i] == ch5) {
+						tf.setTextFormat(textConfigCh5, 42, 69);
+					}
+					if (tf.width < 40) {
+						tf.text += "\n ";
+					}
+				}
+			}
+			
+			if (bordaSelected) drawRectangle(tf, campo_fundo[tf], bordaRectSelected);
+			else drawRectangle(tf, campo_fundo[tf], bordaRectNormal);
+			//drawRectangle(tf, campo_fundo[tf], bordaRectSelected);
+		}
+		
 		
 		private function stageClick(e:MouseEvent):void 
 		{
@@ -214,8 +235,30 @@ package
 			campo7 = campo7_s;
 			campo8 = campo8_s;
 			
-			//campo1.autoSize = TextFieldAutoSize.LEFT;
-			//campo1.multiline = true;
+			campo1.autoSize = TextFieldAutoSize.LEFT;
+			campo1.multiline = true;
+			campo1.text = " \n ";
+			campo2.autoSize = TextFieldAutoSize.LEFT;
+			campo2.multiline = true;
+			campo2.text = " \n ";
+			campo3.autoSize = TextFieldAutoSize.LEFT;
+			campo3.multiline = true;
+			campo3.text = " \n ";
+			campo4.autoSize = TextFieldAutoSize.LEFT;
+			campo4.multiline = true;
+			campo4.text = " \n ";
+			campo5.autoSize = TextFieldAutoSize.LEFT;
+			campo5.multiline = true;
+			campo5.text = " \n ";
+			campo6.autoSize = TextFieldAutoSize.LEFT;
+			campo6.multiline = true;
+			campo6.text = " \n ";
+			campo7.autoSize = TextFieldAutoSize.LEFT;
+			campo7.multiline = true;
+			campo7.text = " \n ";
+			campo8.autoSize = TextFieldAutoSize.LEFT;
+			campo8.multiline = true;
+			campo8.text = " \n ";
 			
 			campo_check[campo1] = [];
 			campo_check[campo2] = [];
@@ -260,7 +303,7 @@ package
 			
 			status.checks = new Object();
 			status.campos = new Object();
-			status.camposText = new Object();
+			//status.camposText = new Object();
 			
 			for (var i:int = 1; i <= 8; i++) 
 			{
@@ -275,7 +318,7 @@ package
 							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i]][j].name;
 						}
 					}
-					status.camposText["campo" + i] = this["campo" + i].text;
+					//status.camposText["campo" + i] = this["campo" + i].text;
 				}
 			}
 			
@@ -302,7 +345,8 @@ package
 						}
 					}
 					
-					this["campo" + i].text = status.camposText["campo" + i];
+					updateTextField(this["campo" + i], false);
+					//this["campo" + i].text = status.camposText["campo" + i];
 				}
 			}
 		}
@@ -314,16 +358,19 @@ package
 				this["ch" + i + "_s"].selected = false;
 				if(i <= 8){
 					campo_check[this["campo" + i]] = [];
-					this["campo" + i].text = "";
+					this["campo" + i].text = " \n ";
 					drawRectangle(this["campo" + i], campo_fundo[this["campo" + i]], bordaRectNormal);
 				}
 			}
 			
-			if (campoSelected != null) {
-				drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
-				campoSelected = null;
-				stage.focus = null;
-			}
+			//if (campoSelected != null) {
+				//drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
+				//campoSelected = null;
+				//stage.focus = null;
+			//}
+			
+			campoSelected = null;
+			stage.focus = null;
 			
 			checksUsados = new Vector.<CheckBox>();
 		}
@@ -384,11 +431,7 @@ package
 			ret4.visible = false;
 			ret5.visible = false;
 			
-			barra1.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra2.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra3.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra4.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
-			barra5.addEventListener(MouseEvent.MOUSE_OVER, overBarra);
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, verifyPosition);
 			
 			barra1.buttonMode = true;
 			barra2.buttonMode = true;
@@ -403,18 +446,16 @@ package
 			barra_ret[barra5] = ret5;
 		}
 		
-		private function overBarra(e:MouseEvent):void 
+		private function verifyPosition(e:MouseEvent):void 
 		{
-			var barra:MovieClip = MovieClip(e.target);
-			barra.addEventListener(MouseEvent.MOUSE_OUT, outBarra);
-			barra_ret[barra].visible = true;
-		}
-		
-		private function outBarra(e:MouseEvent):void 
-		{
-			var barra:MovieClip = MovieClip(e.target);
-			barra.removeEventListener(MouseEvent.MOUSE_OUT, outBarra);
-			barra_ret[barra].visible = false;
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				if (MovieClip(this["barra" + i]).hitTestPoint(stage.mouseX, stage.mouseY)) {
+					barra_ret[this["barra" + i]].visible = true;
+				}else {
+					barra_ret[this["barra" + i]].visible = false;
+				}
+			}
 		}
 		
 	}
