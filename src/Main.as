@@ -33,6 +33,7 @@
 		private var finalizada:Dictionary = new Dictionary();
 		private var maxPontosTela:Dictionary = new Dictionary();
 		private var titulos:Dictionary = new Dictionary();
+		private var pesoTela:Dictionary = new Dictionary();
 		private var maxTentativas:int = 3;
 		
 		public function Main() 
@@ -164,7 +165,8 @@
 			feedbackScreen.okCancelMode = false;
 			
 			pontuacao[indiceNavegacao] = indiceTela[indiceNavegacao].avaliar();
-			var feedText:String = "Você fez " + pontuacao[indiceNavegacao] + " pontos (" + Math.round((pontuacao[indiceNavegacao]/maxPontosTela[indiceNavegacao]) * 100) + "%).";
+			var pontuacao:int = Math.round((pontuacao[indiceNavegacao] / maxPontosTela[indiceNavegacao]) * 100);
+			var feedText:String = "Você fez " + pontuacao[indiceNavegacao] + " pontos (" + pontuacao + "%).";
 			
 			if (pontuacao[indiceNavegacao] == maxPontosTela[indiceNavegacao]) {
 				finalizada[indiceNavegacao] = true;
@@ -184,8 +186,11 @@
 				}
 			}
 			
+			saveAPI.score = Math.round((pontuacao[1] / maxPontosTela[1] * 100) * pesoTela[1] + (pontuacao[2] / maxPontosTela[2] * 100) * pesoTela[2] + (pontuacao[3] / maxPontosTela[3] * 100) * pesoTela[3])
+			
 			feedbackScreen.setText(feedText);
 			carregaTela(indiceNavegacao);
+			saveStatus();
 		}
 		
 		private function keyHandler(e:KeyboardEvent):void 
@@ -226,6 +231,10 @@
 			pontuacao[1] = 0;
 			pontuacao[2] = 0;
 			pontuacao[3] = 0;
+			
+			pesoTela[1] = 1/3;
+			pesoTela[2] = 1/3;
+			pesoTela[3] = 1/3;
 			
 			maxPontosTela[1] = 5;
 			maxPontosTela[2] = 8;
@@ -337,6 +346,8 @@
 				}
 				btAval.visible = true;
 			}
+			
+			saveStatus();
 		}
 		
 		override public function reset(e:MouseEvent = null):void 
