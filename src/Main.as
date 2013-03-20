@@ -165,8 +165,8 @@
 			feedbackScreen.okCancelMode = false;
 			
 			pontuacao[indiceNavegacao] = indiceTela[indiceNavegacao].avaliar();
-			var pontuacao:int = Math.round((pontuacao[indiceNavegacao] / maxPontosTela[indiceNavegacao]) * 100);
-			var feedText:String = "Você fez " + pontuacao[indiceNavegacao] + " pontos (" + pontuacao + "%).";
+			var pts:int = Math.round((pontuacao[indiceNavegacao] / maxPontosTela[indiceNavegacao]) * 100);
+			var feedText:String = "Você fez " + pontuacao[indiceNavegacao] + " pontos (" + pts + "%).";
 			
 			if (pontuacao[indiceNavegacao] == maxPontosTela[indiceNavegacao]) {
 				finalizada[indiceNavegacao] = true;

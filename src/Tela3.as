@@ -304,14 +304,14 @@ package
 		{
 			resp = new Dictionary();
 			
-			resp[campo1] = [ch1];
-			resp[campo2] = [ch3];
-			resp[campo3] = [ch4, ch10, ch13, ch12, ch6];
-			resp[campo4] = [ch2, ch16];
-			resp[campo5] = [ch5, ch14];
-			resp[campo6] = [ch17, ch9, ch11, ch12, ch6];
-			resp[campo7] = [ch7, ch8, ch15];
-			resp[campo8] = [ch18];
+			resp[campo1_s] = [ch1];
+			resp[campo2_s] = [ch3];
+			resp[campo3_s] = [ch4, ch10, ch13, ch12, ch6];
+			resp[campo4_s] = [ch2, ch16];
+			resp[campo5_s] = [ch5, ch14];
+			resp[campo6_s] = [ch17, ch9, ch11, ch12, ch6];
+			resp[campo7_s] = [ch7, ch8, ch15];
+			resp[campo8_s] = [ch18];
 		}
 		
 		override public function avaliar():int 
@@ -336,11 +336,13 @@ package
 			
 			for (var i:int = 0; i < resp[campo].length; i++) 
 			{
-				for each (var item:CheckBox in campo_check[campo]) 
-				{
-					if (item == resp[campo][i]) {
-						certas++;
-						break;
+				if(campo_check[campo].length > 0){
+					for each (var item:CheckBox in campo_check[campo]) 
+					{
+						if (item == resp[campo][i]) {
+							certas++;
+							break;
+						}
 					}
 				}
 			}
