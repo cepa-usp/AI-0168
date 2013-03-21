@@ -48,8 +48,6 @@ package
 		private var check_lock:Dictionary = new Dictionary();
 		private var campo_check:Dictionary = new Dictionary();
 		
-		private var checksUsados:Vector.<CheckBox> = new Vector.<CheckBox>();
-		
 		public function Tela2() {
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
@@ -301,21 +299,21 @@ package
 		{
 			var status:Object = new Object();
 			
-			status.checks = new Object();
-			status.campos = new Object();
+			status.x = new Object();
+			status.c = new Object();
 			//status.camposText = new Object();
 			
 			for (var i:int = 1; i <= 8; i++) 
 			{
-				status.checks["ch" + i] = this["ch" + i].selected;
+				status.x["ch" + i] = this["ch" + i].selected;
 				if (i <= 8) {
 					if (campo_check[this["campo" + i]].length == 0) {
-						status.campos["campo" + i] = "vazio";
+						status.c["c" + i] = "v";
 					}else {
-						status.campos["campo" + i] = "";
+						status.c["c" + i] = "";
 						for (var j:int = 0; j < campo_check[this["campo" + i]].length; j++) 
 						{
-							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i]][j].name;
+							status.c["c" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i]][j].name;
 						}
 					}
 					//status.camposText["campo" + i] = this["campo" + i].text;
@@ -331,13 +329,13 @@ package
 			
 			for (var i:int = 1; i <= 8; i++) 
 			{
-				this["ch" + i].selected = status.checks["ch" + i];
+				this["ch" + i].selected = status.x["ch" + i];
 				
 				if (i <= 8) {
-					if (status.campos["campo" + i] == "vazio") {
+					if (status.c["c" + i] == "v") {
 						campo_check[this["campo" + i]] = [];
 					}else {
-						var camposCheck:Array = String(status.campos["campo" + i]).split(",");
+						var camposCheck:Array = String(status.c["c" + i]).split(",");
 						for (var j:int = 0; j < camposCheck.length; j++) {
 							var check:CheckBox = this[camposCheck[j]];
 							campo_check[this["campo" + i]].push(check);
@@ -414,7 +412,10 @@ package
 			//{
 				if (campo_check[campo][0] == resp[campo]) {
 					certas++;
+					campo_check[campo][0].filters = [];
 					//break;
+				}else {
+					campo_check[campo][0].filters = [wrongFilter];
 				}
 				
 			//}

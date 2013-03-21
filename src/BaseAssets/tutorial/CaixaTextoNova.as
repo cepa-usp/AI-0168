@@ -45,7 +45,7 @@ package BaseAssets.tutorial
 		private var actualPosition:Point = new Point();
 		
 		private var hasNext:Boolean = true;
-		private var nextButton:NextButton;
+		public var nextButton:NextButton;
 		private var closeButton:CloseButtonTuto;
 		private var textArray:Array;
 		private var currentWidth:Number = 200;

@@ -2,6 +2,7 @@ package BaseAssets.status
 {
 	import flash.events.TimerEvent;
 	import flash.external.ExternalInterface;
+	import flash.utils.ByteArray;
 	import flash.utils.Timer;
 	import pipwerks.SCORM;
 	
@@ -167,7 +168,17 @@ package BaseAssets.status
 		
 		public function saveStatus(memento:Object):void
 		{
+			//trace("salvando");
 			mementoSerialized = JSON.stringify(memento);
+			//trace("antes compactacao: " + mementoSerialized);
+			
+			//var comp:ByteArray = new ByteArray();
+			//comp.writeUTF(mementoSerialized);
+			//comp.compress();
+			
+			//mementoSerialized = comp.toString();
+			//trace("compactado: " + mementoSerialized);
+			
 			if (available) {
 				if (connected) {
 					scorm.set("cmi.suspend_data", mementoSerialized);
@@ -180,8 +191,22 @@ package BaseAssets.status
 		
 		public function recoverStatus():Object
 		{
+			//trace("recuperando");
+			
 			var obj:Object;
-			if(mementoSerialized) obj = JSON.parse(mementoSerialized);
+			
+			if (mementoSerialized) {
+				//trace("antes descompactar: " + mementoSerialized);
+				
+				//var comp:ByteArray = new ByteArray();
+				//comp.writeUTF(mementoSerialized);
+				//comp.uncompress();
+				
+				//mementoSerialized = comp.readUTF();
+				//trace("descompactado: " + mementoSerialized);
+			
+				obj = JSON.parse(mementoSerialized);
+			}
 			return obj;
 		}
 		

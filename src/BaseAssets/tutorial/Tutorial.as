@@ -70,15 +70,16 @@ package BaseAssets.tutorial
 		public function proximo(e:Event = null):void {
 			position++;			
 			if (position == baloes.length) {
-				finalize()
+				finalize();
 				return;
 			}
 			if (balaoatual != null) {
-				removeChild(balaoatual)
+				removeChild(balaoatual);
 			}
 			balaoatual = baloes[position];
 			balaoatual.visible = true;
 			balaoatual.alpha = 0;
+			if (position == baloes.length - 1) balaoatual.nextButton.visible = false;
 			addChild(balaoatual);
 			balaoatual.addEventListener(Event.CLOSE, onBalaoClose);
 			balaoatual.addEventListener(TutorialEvent.PROXIMO, onBalaoProxClick);

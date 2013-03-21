@@ -63,23 +63,23 @@
 		
 		private function recoverStatus(status:Object):void 
 		{
-			if (status.tela1) indiceTela[1].restoreStatus(status.tela1);
-			if (status.tela2) indiceTela[2].restoreStatus(status.tela2);
-			if (status.tela3) indiceTela[3].restoreStatus(status.tela3);
+			if (status.a) indiceTela[1].restoreStatus(status.a);
+			if (status.b) indiceTela[2].restoreStatus(status.b);
+			if (status.c) indiceTela[3].restoreStatus(status.c);
 			
-			indiceNavegacao = status.indiceNavegacao;
+			indiceNavegacao = status.i;
 			
-			finalizada[1] = status.finalizada.tela1;
-			finalizada[2] = status.finalizada.tela2;
-			finalizada[3] = status.finalizada.tela3;
+			finalizada[1] = status.f.a;
+			finalizada[2] = status.f.b;
+			finalizada[3] = status.f.c;
 			
-			pontuacao[1] = status.pontuacao.tela1;
-			pontuacao[2] = status.pontuacao.tela2;
-			pontuacao[3] = status.pontuacao.tela3;
+			pontuacao[1] = status.p.a;
+			pontuacao[2] = status.p.b;
+			pontuacao[3] = status.p.c;
 			
-			tentativas[1] = status.tentativas.tela1;
-			tentativas[2] = status.tentativas.tela2;
-			tentativas[3] = status.tentativas.tela3;
+			tentativas[1] = status.t.a;
+			tentativas[2] = status.t.b;
+			tentativas[3] = status.t.c;
 			
 			carregaTela(indiceNavegacao);
 		}
@@ -88,32 +88,33 @@
 		{
 			var status:Object = new Object();
 			
-			status.tela1 = indiceTela[1].saveStatus();
-			status.tela2 = indiceTela[2].saveStatus();
-			status.tela3 = indiceTela[3].saveStatus();
+			status.a = indiceTela[1].saveStatus();
+			status.b = indiceTela[2].saveStatus();
+			status.c = indiceTela[3].saveStatus();
 			
-			status.finalizada = new Object();
-			status.pontuacao = new Object();
-			status.tentativas = new Object();
+			status.f = new Object();
+			status.p = new Object();
+			status.t = new Object();
 			
-			status.indiceNavegacao = indiceNavegacao;
+			status.i = indiceNavegacao;
 			
-			status.finalizada.tela1 = finalizada[1];
-			status.finalizada.tela2 = finalizada[2];
-			status.finalizada.tela3 = finalizada[3];
+			status.f.a = finalizada[1];
+			status.f.b = finalizada[2];
+			status.f.c = finalizada[3];
 			
-			status.pontuacao.tela1 = pontuacao[1];
-			status.pontuacao.tela2 = pontuacao[2];
-			status.pontuacao.tela3 = pontuacao[3];
+			status.p.a = pontuacao[1];
+			status.p.b = pontuacao[2];
+			status.p.c = pontuacao[3];
 			
-			status.tentativas.tela1 = tentativas[1];
-			status.tentativas.tela2 = tentativas[2];
-			status.tentativas.tela3 = tentativas[3];
+			status.t.a = tentativas[1];
+			status.t.b = tentativas[2];
+			status.t.c = tentativas[3];
 			
 			saveAPI.saveStatus(status);
 		}
 		
 		private var tutorial:Tutorial;
+		private var tutorialAvancar:Tutorial;
 		private function criaTutorial():void 
 		{
 			tutorial = new Tutorial();
@@ -121,6 +122,9 @@
 			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(400, 150), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
 			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 100), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
 			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 300), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
+			
+			tutorialAvancar = new Tutorial();
+			tutorialAvancar.adicionarBalao("Clique aqui para prosseguir.", new Point(164, 27), CaixaTextoNova.TOP, CaixaTextoNova.FIRST);
 		}
 		
 		private function addListeners():void 
@@ -131,24 +135,33 @@
 			btAval.addEventListener(MouseEvent.CLICK, avaliaTela);
 		}
 		
+		private var mudou:Boolean = true;
 		private function avaliaTela(e:MouseEvent):void 
 		{
 			//feedbackScreen.setText("Você acertou " + indiceTela[indiceNavegacao].avaliar() + " itens.");
-			if(!finalizada[indiceNavegacao]){
-				feedbackScreen.okCancelMode = true;
-				var restantes:int = maxTentativas - tentativas[indiceNavegacao] + 1;
-				if (restantes == 1) feedbackScreen.setText("Essa é sua última tentativa, tem certeza que deseja realizar a avaliação?");
-				else feedbackScreen.setText("Você possui " + restantes + " tentativas, tem certeza que deseja realizar a avaliação?");
-				feedbackScreen.addEventListener(BaseEvent.OK_SCREEN, avaliar);
-				feedbackScreen.addEventListener(BaseEvent.CANCEL_SCREEN, cancelAval);
-			}else {
+			if (!mudou) {
 				feedbackScreen.okCancelMode = false;
-				if (pontuacao[indiceNavegacao] == maxPontosTela[indiceNavegacao]) {
-					feedbackScreen.setText("Você já acertou o exercício, vá para a próxima tela.");
-				}else {
-					feedbackScreen.setText("Você não possui mais tentativas nessa tela.");
+				feedbackScreen.setText("Não houve alteração desde a tentativa anterior, que por sua vez indicou haver erros no cladograma. Procure corrigí-los antes de reavaliar.");
+			}else{
+				if (indiceTela[indiceNavegacao].checksUsados.length < maxPontosTela[indiceNavegacao]) {
+					feedbackScreen.okCancelMode = false;
+					feedbackScreen.setText("Todos os itens à esquerda devem ser inseridos no cladograma antes de avaliar.");
+				}else{
+					if(!finalizada[indiceNavegacao]){
+						feedbackScreen.okCancelMode = true;
+						feedbackScreen.setText("Confirma a avaliação do cladograma?");
+						feedbackScreen.addEventListener(BaseEvent.OK_SCREEN, avaliar);
+						feedbackScreen.addEventListener(BaseEvent.CANCEL_SCREEN, cancelAval);
+					}else {
+						feedbackScreen.okCancelMode = false;
+						if (pontuacao[indiceNavegacao] == maxPontosTela[indiceNavegacao]) {
+							feedbackScreen.setText("Você já acertou o exercício, vá para a próxima tela.");
+						}else {
+							feedbackScreen.setText("Você não possui mais tentativas nessa tela.");
+						}
+						feedbackScreen.addEventListener(BaseEvent.OK_SCREEN, okScreenTuto);
+					}
 				}
-				
 			}
 		}
 		
@@ -165,23 +178,27 @@
 			feedbackScreen.okCancelMode = false;
 			
 			pontuacao[indiceNavegacao] = indiceTela[indiceNavegacao].avaliar();
-			var pts:int = Math.round((pontuacao[indiceNavegacao] / maxPontosTela[indiceNavegacao]) * 100);
-			var feedText:String = "Você fez " + pontuacao[indiceNavegacao] + " pontos (" + pts + "%).";
 			
+			var feedText:String;
+			var needTuto:Boolean = false;
 			if (pontuacao[indiceNavegacao] == maxPontosTela[indiceNavegacao]) {
 				finalizada[indiceNavegacao] = true;
-				feedText += "\nAgora que você finalizou essa tela ela não poderá mais ser alterada. Vá para a próxima tela.";
+				feedText = "Parabéns! Você acertou todos os itens desta parte. Prossiga para a próxima parte da atividade.";
+				needTuto = true;
 			}else {
+				feedText = "Você acertou " + pontuacao[indiceNavegacao] + " dos " + maxPontosTela[indiceNavegacao] + " itens existentes.";
 				if (tentativas[indiceNavegacao] == 3) {
 					finalizada[indiceNavegacao] = true;
-					feedText += "\nVocê não possui mais tentativas nessa tela. Vá para a próxima tela.";
+					feedText += "\nOs itens incorretos foram destacados em vermelho e não há mais tentativas nesta parte para corrigí-los. Veja na próxima parte da atividade as respostas corretas.";
+					needTuto = true;
 				}else {
+					mudou = false;
 					tentativas[indiceNavegacao]++;
 					var restantes:int = maxTentativas - tentativas[indiceNavegacao] + 1;
 					if (restantes == 1) {
-						feedText += "\nVocê possui mais " + restantes + " tentativa nessa tela.";
+						feedText += "\nOs itens incorretos foram indicados no cladograma. Use essas informações para corrigí-lo e faça uma nova avaliação (vocẽ ainda tem " + restantes + " tentativa nesta parte).";
 					}else{
-						feedText += "\nVocê possui mais " + restantes + " tentativas nessa tela.";
+						feedText += "\nOs itens incorretos foram indicados no cladograma. Use essas informações para corrigí-lo e faça uma nova avaliação (vocẽ ainda tem " + restantes + " tentativas nesta parte).";
 					}
 				}
 			}
@@ -189,8 +206,17 @@
 			saveAPI.score = Math.round((pontuacao[1] / maxPontosTela[1] * 100) * pesoTela[1] + (pontuacao[2] / maxPontosTela[2] * 100) * pesoTela[2] + (pontuacao[3] / maxPontosTela[3] * 100) * pesoTela[3])
 			
 			feedbackScreen.setText(feedText);
+			if (needTuto) {
+				feedbackScreen.addEventListener(BaseEvent.OK_SCREEN, okScreenTuto);
+			}
 			carregaTela(indiceNavegacao);
 			saveStatus();
+		}
+		
+		private function okScreenTuto(e:Event):void
+		{
+			feedbackScreen.removeEventListener(BaseEvent.OK_SCREEN, okScreenTuto);
+			tutorialAvancar.iniciar(stage, true);
 		}
 		
 		private function keyHandler(e:KeyboardEvent):void 
@@ -263,6 +289,7 @@
 		
 		private function checkClicked(e:Event):void 
 		{
+			mudou = true;
 			saveStatus();
 		}
 		
@@ -335,8 +362,8 @@
 					indiceTela[indiceNavegacao].mouseEnabled = false;
 				}
 				informacoes.info.text = titulos[indiceNavegacao];
-				informacoes.tentativa.text = "Tentativa " + tentativas[indice] + " de " + maxTentativas;
-				informacoes.pontos.text = pontuacao[indice] + " pontos";
+				informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
+				informacoes.pontos.text = "Pontos:\n" + pontuacao[indice] + " de " + maxPontosTela[indice];
 				if (indiceNavegacao == 1) {
 					lock(navegacao.voltar);
 					unlock(navegacao.avancar);

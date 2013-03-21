@@ -49,7 +49,6 @@ package
 		private var check_lock:Dictionary = new Dictionary();
 		private var campo_check:Dictionary = new Dictionary();
 		
-		private var checksUsados:Vector.<CheckBox> = new Vector.<CheckBox>();
 		private var textUp:Array;
 		private var textUpInicial:Dictionary = new Dictionary();
 		
@@ -225,24 +224,24 @@ package
 		{
 			var status:Object = new Object();
 			
-			status.checks = new Object();
-			status.campos = new Object();
+			status.x = new Object();
+			status.c = new Object();
 			//status.camposText = new Object();
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				status.checks["ch" + i] = this["ch" + i + "_s"].selected;
+				status.x["ch" + i] = this["ch" + i + "_s"].selected;
 				if (i <= 8) {
 					if (campo_check[this["campo" + i + "_s"]].length == 0) {
-						status.campos["campo" + i] = "vazio";
+						status.c["c" + i] = "v";
 					}else {
-						status.campos["campo" + i] = "";
+						status.c["c" + i] = "";
 						for (var j:int = 0; j < campo_check[this["campo" + i + "_s"]].length; j++) 
 						{
-							status.campos["campo" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i + "_s"]][j].name;
+							status.c["c" + i] += (j > 0 ? "," : "") + campo_check[this["campo" + i + "_s"]][j].name;
 						}
 					}
-					//status.camposText["campo" + i] = this["campo" + i + "_s"].text;
+					//status.camposText["campo" + i] = this["campo" + i].text;
 				}
 			}
 			
@@ -255,13 +254,13 @@ package
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				this["ch" + i + "_s"].selected = status.checks["ch" + i];
+				this["ch" + i].selected = status.x["ch" + i + "_s"];
 				
 				if (i <= 8) {
-					if (status.campos["campo" + i] == "vazio") {
+					if (status.c["c" + i] == "v") {
 						campo_check[this["campo" + i + "_s"]] = [];
 					}else {
-						var camposCheck:Array = String(status.campos["campo" + i]).split(",");
+						var camposCheck:Array = String(status.c["c" + i]).split(",");
 						for (var j:int = 0; j < camposCheck.length; j++) {
 							var check:CheckBox = this[camposCheck[j]];
 							campo_check[this["campo" + i + "_s"]].push(check);
@@ -270,7 +269,7 @@ package
 					}
 					
 					updateTextField(this["campo" + i + "_s"], false);
-					//this["campo" + i + "_s"].text = status.camposText["campo" + i];
+					//this["campo" + i].text = status.camposText["campo" + i];
 				}
 			}
 		}
@@ -333,17 +332,23 @@ package
 		private function calculaResp(campo:TextField):int
 		{
 			var certas:int = 0;
+			var achou:Boolean;
 			
-			for (var i:int = 0; i < resp[campo].length; i++) 
+			for each (var selecionado:CheckBox in campo_check[campo]) 
 			{
-				if(campo_check[campo].length > 0){
-					for each (var item:CheckBox in campo_check[campo]) 
-					{
-						if (item == resp[campo][i]) {
-							certas++;
-							break;
-						}
+				achou = false;
+				for each (var resposta:CheckBox in resp[campo]) 
+				{
+					if (selecionado == resposta) {
+						certas++;
+						achou = true;
+						break;
 					}
+				}
+				if (achou) {
+					selecionado.filters = [];
+				}else {
+					selecionado.filters = [wrongFilter];
 				}
 			}
 			
