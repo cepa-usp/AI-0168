@@ -5,6 +5,7 @@ package BaseAssets.status
 	import flash.utils.ByteArray;
 	import flash.utils.Timer;
 	import pipwerks.SCORM;
+	import BaseAssets.status.Base64;
 	
 	/**
 	 * ...
@@ -168,15 +169,8 @@ package BaseAssets.status
 		
 		public function saveStatus(memento:Object):void
 		{
-			//trace("salvando");
-			mementoSerialized = JSON.stringify(memento);
-			//trace("antes compactacao: " + mementoSerialized);
-			
-			//var comp:ByteArray = new ByteArray();
-			//comp.writeUTF(mementoSerialized);
-			//comp.compress();
-			
-			//mementoSerialized = comp.toString();
+			var stringMemento:String = JSON.stringify(memento);
+			mementoSerialized = compress(stringMemento);
 			//trace("compactado: " + mementoSerialized);
 			
 			if (available) {
@@ -191,23 +185,33 @@ package BaseAssets.status
 		
 		public function recoverStatus():Object
 		{
-			//trace("recuperando");
-			
 			var obj:Object;
 			
 			if (mementoSerialized) {
-				//trace("antes descompactar: " + mementoSerialized);
 				
-				//var comp:ByteArray = new ByteArray();
-				//comp.writeUTF(mementoSerialized);
-				//comp.uncompress();
-				
-				//mementoSerialized = comp.readUTF();
+				var descompressed:String = uncompress(mementoSerialized);
+				mementoSerialized = descompressed;
 				//trace("descompactado: " + mementoSerialized);
-			
 				obj = JSON.parse(mementoSerialized);
 			}
 			return obj;
+		}
+		
+		public static function compress( str:String ) :String
+		{
+		   var b:ByteArray = new ByteArray();
+		   b.writeObject( str );
+		   b.compress();
+		   return Base64.Encode( b );
+		}
+
+		public static function uncompress( str:String ) :String
+		{
+		   var b:ByteArray = Base64.Decode( str );
+		   b.uncompress();
+		   var strB:String = b.toString();
+		   var index:int = strB.indexOf("{");
+		   return strB.substring(index);
 		}
 		
 		public function get score():int 

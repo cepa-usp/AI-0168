@@ -46,6 +46,7 @@
 			configuraMenuNavegacao();
 			iniciaTelas();
 			addListeners();
+			addListenerBarras();
 			
 			criaTutorial();
 			
@@ -59,6 +60,42 @@
 				iniciaTutorial();
 			}
 			
+		}
+		
+		private var barra_ret:Dictionary = new Dictionary();
+		public function addListenerBarras():void
+		{
+			ret1.visible = false;
+			ret2.visible = false;
+			ret3.visible = false;
+			ret4.visible = false;
+			ret5.visible = false;
+			
+			stage.addEventListener(MouseEvent.MOUSE_MOVE, verifyPosition);
+			
+			barra1.buttonMode = true;
+			barra2.buttonMode = true;
+			barra3.buttonMode = true;
+			barra4.buttonMode = true;
+			barra5.buttonMode = true;
+			
+			barra_ret[barra1] = ret1;
+			barra_ret[barra2] = ret2;
+			barra_ret[barra3] = ret3;
+			barra_ret[barra4] = ret4;
+			barra_ret[barra5] = ret5;
+		}
+		
+		private function verifyPosition(e:MouseEvent):void 
+		{
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				if (MovieClip(this["barra" + i]).hitTestPoint(stage.mouseX, stage.mouseY)) {
+					barra_ret[this["barra" + i]].visible = true;
+				}else {
+					barra_ret[this["barra" + i]].visible = false;
+				}
+			}
 		}
 		
 		private function recoverStatus(status:Object):void 
@@ -345,6 +382,8 @@
 			//saveStatus();
 		}
 		
+		private var textFormatRevisao:TextFormat = new TextFormat();
+		private var textFormatNormal:TextFormat = new TextFormat();
 		private function carregaTela(indice:int):void 
 		{
 			navegacao.info.text = "Parte " + indiceNavegacao + " de " + indiceNavegacaoMax;
@@ -360,9 +399,16 @@
 				if (finalizada[indiceNavegacao]) {
 					indiceTela[indiceNavegacao].mouseChildren = false;
 					indiceTela[indiceNavegacao].mouseEnabled = false;
+					textFormatRevisao.bold = true;
+					textFormatRevisao.color = 0x800000;
+					informacoes.tentativa.defaultTextFormat = textFormatRevisao;
+					informacoes.tentativa.text = "Modo de\nrevisão";
+				}else {
+					textFormatNormal.bold = false;
+					informacoes.tentativa.defaultTextFormat = textFormatNormal;
+					informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
 				}
 				informacoes.info.text = titulos[indiceNavegacao];
-				informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
 				informacoes.pontos.text = "Pontos:\n" + pontuacao[indice] + " de " + maxPontosTela[indice];
 				if (indiceNavegacao == 1) {
 					lock(navegacao.voltar);

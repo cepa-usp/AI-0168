@@ -61,7 +61,6 @@ package
 			
 			addListeners();
 			criaResposta();
-			addListenerBarras();
 		}
 		
 		private function addListeners():void 
@@ -87,7 +86,8 @@ package
 			stage.addEventListener(MouseEvent.CLICK, stageClick);
 		}
 		
-		private var textConfigCh5:TextFormat = new TextFormat("Arial", 5, 0x000000);
+		private var textConfig:TextFormat = new TextFormat("Arial", 8, 0x000000);
+		private var textConfigCh5:TextFormat = new TextFormat("Arial", 7, 0x000000);
 		
 		private function checkChange(e:Event):void 
 		{
@@ -125,10 +125,12 @@ package
 			}else{
 				for (var i:int = 0; i < arrayChecks.length; i++) 
 				{
-					tf.text = arrayChecks[i].label;
 					if (arrayChecks[i] == ch5) {
-						tf.setTextFormat(textConfigCh5, 42, 69);
+						tf.defaultTextFormat = textConfigCh5;//, 42, 69);
+					}else {
+						tf.defaultTextFormat = textConfig;
 					}
+					tf.text = arrayChecks[i].label;
 					if (tf.width < 40) {
 						tf.text += "\n ";
 					}
@@ -421,42 +423,6 @@ package
 			//}
 			
 			return certas;
-		}
-		
-		private var barra_ret:Dictionary = new Dictionary();
-		public function addListenerBarras():void
-		{
-			ret1.visible = false;
-			ret2.visible = false;
-			ret3.visible = false;
-			ret4.visible = false;
-			ret5.visible = false;
-			
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, verifyPosition);
-			
-			barra1.buttonMode = true;
-			barra2.buttonMode = true;
-			barra3.buttonMode = true;
-			barra4.buttonMode = true;
-			barra5.buttonMode = true;
-			
-			barra_ret[barra1] = ret1;
-			barra_ret[barra2] = ret2;
-			barra_ret[barra3] = ret3;
-			barra_ret[barra4] = ret4;
-			barra_ret[barra5] = ret5;
-		}
-		
-		private function verifyPosition(e:MouseEvent):void 
-		{
-			for (var i:int = 1; i <= 5; i++) 
-			{
-				if (MovieClip(this["barra" + i]).hitTestPoint(stage.mouseX, stage.mouseY)) {
-					barra_ret[this["barra" + i]].visible = true;
-				}else {
-					barra_ret[this["barra" + i]].visible = false;
-				}
-			}
 		}
 		
 	}

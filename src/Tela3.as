@@ -65,7 +65,6 @@ package
 			
 			addListeners();
 			criaResposta();
-			addListenerBarras();
 			
 			textUp = [campo1_s, campo3_s, campo6_s, campo8_s];
 			textUpInicial[campo1_s] = new Point(campo1_s.y, campo1_s.height);
@@ -353,42 +352,6 @@ package
 			}
 			
 			return certas;
-		}
-		
-		private var barra_ret:Dictionary = new Dictionary();
-		public function addListenerBarras():void
-		{
-			ret1.visible = false;
-			ret2.visible = false;
-			ret3.visible = false;
-			ret4.visible = false;
-			ret5.visible = false;
-			
-			stage.addEventListener(MouseEvent.MOUSE_MOVE, verifyPosition);
-			
-			barra1.buttonMode = true;
-			barra2.buttonMode = true;
-			barra3.buttonMode = true;
-			barra4.buttonMode = true;
-			barra5.buttonMode = true;
-			
-			barra_ret[barra1] = ret1;
-			barra_ret[barra2] = ret2;
-			barra_ret[barra3] = ret3;
-			barra_ret[barra4] = ret4;
-			barra_ret[barra5] = ret5;
-		}
-		
-		private function verifyPosition(e:MouseEvent):void 
-		{
-			for (var i:int = 1; i <= 5; i++) 
-			{
-				if (MovieClip(this["barra" + i]).hitTestPoint(stage.mouseX, stage.mouseY)) {
-					barra_ret[this["barra" + i]].visible = true;
-				}else {
-					barra_ret[this["barra" + i]].visible = false;
-				}
-			}
 		}
 		
 	}
