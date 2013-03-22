@@ -47,10 +47,11 @@ package BaseAssets.tutorial
 			
 			stage.addChild(this);						
 			if (block) {
+				blocksprite.graphics.clear();
 				blocksprite.graphics.beginFill(0xFFFFFF, 0.2);
 				blocksprite.graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
 				blocksprite.name = "block";
-				addChild(blocksprite)
+				addChild(blocksprite);
 			}
 			position = -1;
 			dispatchEvent(new TutorialEvent( -1, TutorialEvent.INICIO_TUTORIAL, true));	
@@ -95,7 +96,7 @@ package BaseAssets.tutorial
 		
 		private function onBalaoClose(e:Event):void 
 		{
-			finalize()
+			finalize();
 		}
 		
 		

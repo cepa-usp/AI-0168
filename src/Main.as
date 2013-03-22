@@ -60,7 +60,7 @@
 				iniciaTutorial();
 			}
 			
-			stage.addEventListener(MouseEvent.CLICK, showPosition);
+			//stage.addEventListener(MouseEvent.CLICK, showPosition);
 		}
 		
 		private function showPosition(e:MouseEvent):void 
@@ -158,16 +158,33 @@
 		
 		private var tutorial:Tutorial;
 		private var tutorialAvancar:Tutorial;
+		private var tutorialParte2:Tutorial;
+		private var tutorialParte3:Tutorial;
 		private function criaTutorial():void 
 		{
 			tutorial = new Tutorial();
-			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(350, 200), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
-			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(400, 150), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
-			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 100), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
-			tutorial.adicionarBalao("Veja aqui as orientações.", new Point(450, 300), CaixaTextoNova.RIGHT, CaixaTextoNova.CENTER);
+			
+			tutorial.adicionarBalao("Veja aqui as orientações sobre esta atividade interativa.", new Point(745, 632), CaixaTextoNova.RIGHT, CaixaTextoNova.LAST);
+			tutorial.adicionarBalao("Seu objetivo nesta atividade é completar o cladograma.", new Point(417, 226), CaixaTextoNova.BOTTOM, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Faremos isso em quatro passos sequenciais.", new Point(94, 33), CaixaTextoNova.TOP, CaixaTextoNova.FIRST);
+			tutorial.adicionarBalao("Leia aqui o enunciado de cada um dos passos.", new Point(361, 30), CaixaTextoNova.TOP, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Para preencher este campo, por exemplo, clique nele...", new Point(245, 411), CaixaTextoNova.BOTTOM, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("… e escolha o(s) item(ns) que deve(m) ser associado(s) a ele.", new Point(173, 162), CaixaTextoNova.LEFT, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Repita este processo para todos os campos, até utilizar todos os itens da lista.", new Point(248, 499), CaixaTextoNova.BOTTOM, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Quando tiver terminado, pressione este botão para verificar sua resposta.", new Point(95, 653), CaixaTextoNova.BOTTOM, CaixaTextoNova.FIRST);
+			tutorial.adicionarBalao("Os itens incorretos serão descados em vermelho (os itens corretos permanecerão em preto).", new Point(177, 117), CaixaTextoNova.LEFT, CaixaTextoNova.CENTER);
+			tutorial.adicionarBalao("Em cada parte você tem três tentativas. Use-as para aprimorar seu desempenho.", new Point(683, 33), CaixaTextoNova.TOP, CaixaTextoNova.LAST);
+			tutorial.adicionarBalao("Sua pontuação é igual ao número de itens que você acertou.", new Point(750, 33), CaixaTextoNova.TOP, CaixaTextoNova.LAST);
+			tutorial.adicionarBalao("Quando você tiver acertado todos os itens ou encerrado o número de tentativas, pressione este botão para avançar até a próxima parte.", new Point(163, 30), CaixaTextoNova.TOP, CaixaTextoNova.FIRST);
 			
 			tutorialAvancar = new Tutorial();
 			tutorialAvancar.adicionarBalao("Clique aqui para prosseguir.", new Point(164, 27), CaixaTextoNova.TOP, CaixaTextoNova.FIRST);
+			
+			tutorialParte2 = new Tutorial();
+			tutorialParte2.adicionarBalao("No segundo passo da atividade, cada campo pode conter apenas um item da lista à esquerda.", new Point(462, 216), CaixaTextoNova.TOP, CaixaTextoNova.CENTER);
+			
+			tutorialParte3 = new Tutorial();
+			tutorialParte3.adicionarBalao("No terceiro passo da atividade, cada campo pode conter mais de um item da lista à esquerda.", new Point(455, 432), CaixaTextoNova.BOTTOM, CaixaTextoNova.CENTER);
 		}
 		
 		private function addListeners():void 
@@ -405,15 +422,16 @@
 				if (finalizada[indiceNavegacao]) {
 					indiceTela[indiceNavegacao].mouseChildren = false;
 					indiceTela[indiceNavegacao].mouseEnabled = false;
-					textFormatRevisao.bold = true;
 					textFormatRevisao.color = 0x800000;
 					informacoes.tentativa.defaultTextFormat = textFormatRevisao;
 					informacoes.tentativa.text = "Modo de\nrevisão";
 				}else {
-					textFormatNormal.bold = false;
-					textFormatNormal.color = 0xFFFFFF;
+					textFormatNormal.color = 0x000000;
 					informacoes.tentativa.defaultTextFormat = textFormatNormal;
 					informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
+					
+					if (indice == 2) tutorialParte2.iniciar(stage, true);
+					if (indice == 3) tutorialParte3.iniciar(stage, true);
 				}
 				informacoes.info.text = titulos[indiceNavegacao];
 				informacoes.pontos.text = "Pontos:\n" + pontuacao[indice] + " de " + maxPontosTela[indice];
