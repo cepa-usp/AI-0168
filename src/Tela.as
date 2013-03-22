@@ -16,6 +16,7 @@ package
 	{
 		protected var wrongFilter:GlowFilter = new GlowFilter(0xFF0000, 1, 4, 4, 1, 1);
 		protected var formatoCheck:TextFormat = new TextFormat("Arial", 14, 0x000000);
+		protected var formatoCheckDisabled:TextFormat = new TextFormat("Arial", 14, 0x808080);
 		protected var larguraText:Number = 200;
 		public var checksUsados:Vector.<CheckBox> = new Vector.<CheckBox>();
 		
@@ -23,6 +24,7 @@ package
 		{
 			ch.textField.autoSize = TextFieldAutoSize.LEFT;
 			ch.setStyle("textFormat", format);
+			ch.setStyle("disabledTextFormat", formatoCheckDisabled);
 			ch.textField.width = largura;
 			//ch.textField.multiline = true;
 			if(ch.label.length > 20) ch.textField.wordWrap = true;

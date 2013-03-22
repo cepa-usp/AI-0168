@@ -8,6 +8,7 @@ package
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	/**
 	 * ...
@@ -46,7 +47,6 @@ package
 		private var campoSelected:TextField;
 		
 		private var campo_fundo:Dictionary = new Dictionary();
-		private var check_lock:Dictionary = new Dictionary();
 		private var campo_check:Dictionary = new Dictionary();
 		
 		private var textUp:Array;
@@ -65,12 +65,40 @@ package
 			
 			addListeners();
 			criaResposta();
+			lockCheckboxes();
 			
 			textUp = [campo1_s, campo3_s, campo6_s, campo8_s];
 			textUpInicial[campo1_s] = new Point(campo1_s.y, campo1_s.height);
 			textUpInicial[campo3_s] = new Point(campo3_s.y, campo3_s.height);
 			textUpInicial[campo6_s] = new Point(campo6_s.y, campo6_s.height);
 			textUpInicial[campo8_s] = new Point(campo8_s.y, campo8_s.height);
+			
+			setTimeout(sortPositions, 1);
+		}
+		
+		private var alturaCheck:int = 68;
+		private function sortPositions():void 
+		{
+			var checks:Array = [];
+			for (var i:int = 1; i <= 18; i++) 
+			{
+				checks.push(this["ch" + i + "_s"]);
+			}
+			
+			var dist:int = -3;
+			var alturaTotal:Number = -1;
+			
+			while (checks.length > 0) {
+				var index:int = Math.floor(Math.random() * checks.length);
+				var ch:CheckBox = checks.splice(index, 1)[0];
+				//trace(ch.getRect(ch.parent).height);
+				var bounds:Rectangle = ch.getBounds(ch.parent);
+				//trace(bounds.height);
+				var diff:Number = Math.abs(ch.y - bounds.topLeft.y);
+				
+				ch.y = alturaTotal + diff;
+				alturaTotal += bounds.height + dist;
+			}
 		}
 		
 		private function addListeners():void 
@@ -164,7 +192,7 @@ package
 			for (var i:int = 1; i <= 18; i++) 
 			{
 				var ch:CheckBox = this["ch" + i + "_s"];
-				check_lock[ch].visible = true;
+				ch.enabled = false;
 			}
 		}
 		
@@ -173,12 +201,12 @@ package
 			for (var i:int = 1; i <= 18; i++) 
 			{
 				var ch:CheckBox = this["ch" + i + "_s"];
-				check_lock[ch].visible = false;
+				ch.enabled = true;
 			}
 			
 			for each (var item:CheckBox in checksUsados) 
 			{
-				if(campo_check[campoSelected].indexOf(item) < 0) check_lock[item].visible = true;
+				if(campo_check[campoSelected].indexOf(item) < 0) item.enabled = false;
 			}
 		}
 		
@@ -198,8 +226,6 @@ package
 				this["ch" + i] = this["ch" + i + "_s"];
 				//var ch:CheckBox = this["ch" + i];
 				//ch = this["ch" + i + "_s"];
-				//check_lock[ch] = this["ch" + i + "_lock"];
-				check_lock[this["ch" + i]] = this["ch" + i + "_lock"];
 				
 				if (i <= 8) {
 					var campo:TextField = this["campo" + i];
@@ -217,6 +243,7 @@ package
 					drawRectangle(campo, campo_fundo[campo], bordaRectNormal);
 				}
 			}
+			
 		}
 		
 		override public function saveStatus():Object 

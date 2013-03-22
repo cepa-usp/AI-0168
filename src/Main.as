@@ -60,6 +60,12 @@
 				iniciaTutorial();
 			}
 			
+			stage.addEventListener(MouseEvent.CLICK, showPosition);
+		}
+		
+		private function showPosition(e:MouseEvent):void 
+		{
+			trace(stage.mouseX, stage.mouseY);
 		}
 		
 		private var barra_ret:Dictionary = new Dictionary();
@@ -348,11 +354,11 @@
 		
 		private function f_avancar(e:MouseEvent):void 
 		{
-			if (!finalizada[indiceNavegacao]) {
+			/*if (!finalizada[indiceNavegacao]) {
 				feedbackScreen.okCancelMode = false;
 				feedbackScreen.setText("Você precisa finalizar essa tela antes de prosseguir.");
 				return;
-			}
+			}*/
 			
 			if (indiceNavegacao < indiceNavegacaoMax) {
 				descarregaTela(indiceNavegacao);
@@ -405,6 +411,7 @@
 					informacoes.tentativa.text = "Modo de\nrevisão";
 				}else {
 					textFormatNormal.bold = false;
+					textFormatNormal.color = 0xFFFFFF;
 					informacoes.tentativa.defaultTextFormat = textFormatNormal;
 					informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
 				}

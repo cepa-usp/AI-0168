@@ -7,9 +7,11 @@ package
 	import flash.events.MouseEvent;
 	import flash.filters.GlowFilter;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	/**
 	 * ...
@@ -35,7 +37,6 @@ package
 		//private var campoSelected:TLFTextField;
 		
 		private var campo_fundo:Dictionary = new Dictionary();
-		private var check_lock:Dictionary = new Dictionary();
 		private var campo_check:Dictionary = new Dictionary();
 		
 		private var textUp:Array;
@@ -60,6 +61,33 @@ package
 			textUp = [campo1, campo3];
 			textUpInicial[campo1] = new Point(campo1.y, campo1.height);
 			textUpInicial[campo3] = new Point(campo3.y, campo3.height);
+			
+			setTimeout(sortPositions, 1);
+		}
+		
+		private var alturaCheck:int = 70;
+		private function sortPositions():void 
+		{
+			var checks:Array = [];
+			for (var i:int = 1; i <= 5; i++) 
+			{
+				checks.push(this["ch" + i]);
+			}
+			
+			var dist:int = 15;
+			var alturaTotal:Number = dist;
+			
+			while (checks.length > 0) {
+				var index:int = Math.floor(Math.random() * checks.length);
+				var ch:CheckBox = checks.splice(index, 1)[0];
+				//trace(ch.getRect(ch.parent).height);
+				var bounds:Rectangle = ch.getBounds(ch.parent);
+				//trace(bounds.height);
+				var diff:Number = Math.abs(ch.y - bounds.topLeft.y);
+				
+				ch.y = alturaTotal + diff;
+				alturaTotal += bounds.height + dist;
+			}
 		}
 		
 		private function addListeners():void 
@@ -149,24 +177,24 @@ package
 		
 		private function lockCheckboxes():void 
 		{
-			check_lock[ch1].visible = true;
-			check_lock[ch2].visible = true;
-			check_lock[ch3].visible = true;
-			check_lock[ch4].visible = true;
-			check_lock[ch5].visible = true;
+			ch1.enabled = false;
+			ch2.enabled = false;
+			ch3.enabled = false;
+			ch4.enabled = false;
+			ch5.enabled = false;
 		}
 		
 		private function unlockCheckboxes():void 
 		{
-			check_lock[ch1].visible = false;
-			check_lock[ch2].visible = false;
-			check_lock[ch3].visible = false;
-			check_lock[ch4].visible = false;
-			check_lock[ch5].visible = false;
+			ch1.enabled = true;
+			ch2.enabled = true;
+			ch3.enabled = true;
+			ch4.enabled = true;
+			ch5.enabled = true;
 			
 			for each (var item:CheckBox in checksUsados) 
 			{
-				if(campo_check[campoSelected].indexOf(item) < 0) check_lock[item].visible = true;
+				if (campo_check[campoSelected].indexOf(item) < 0) item.enabled = false;
 			}
 		}
 		
@@ -217,11 +245,6 @@ package
 			drawRectangle(campo2, campo_fundo[campo2], bordaRectNormal);
 			drawRectangle(campo3, campo_fundo[campo3], bordaRectNormal);
 			
-			check_lock[ch1] = ch1_lock;
-			check_lock[ch2] = ch2_lock;
-			check_lock[ch3] = ch3_lock;
-			check_lock[ch4] = ch4_lock;
-			check_lock[ch5] = ch5_lock;
 		}
 		
 		override public function saveStatus():Object 

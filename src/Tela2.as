@@ -4,10 +4,12 @@ package
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFormat;
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	/**
 	 * ...
@@ -45,7 +47,6 @@ package
 		private var campoSelected:TextField;
 		
 		private var campo_fundo:Dictionary = new Dictionary();
-		private var check_lock:Dictionary = new Dictionary();
 		private var campo_check:Dictionary = new Dictionary();
 		
 		public function Tela2() {
@@ -61,6 +62,34 @@ package
 			
 			addListeners();
 			criaResposta();
+			lockCheckboxes();
+			
+			setTimeout(sortPositions, 1);
+		}
+		
+		private var alturaCheck:int = 68;
+		private function sortPositions():void 
+		{
+			var checks:Array = [];
+			for (var i:int = 1; i <= 8; i++) 
+			{
+				checks.push(this["ch" + i + "_s"]);
+			}
+			
+			var dist:int = 15;
+			var alturaTotal:Number = dist;
+			
+			while (checks.length > 0) {
+				var index:int = Math.floor(Math.random() * checks.length);
+				var ch:CheckBox = checks.splice(index, 1)[0];
+				//trace(ch.getRect(ch.parent).height);
+				var bounds:Rectangle = ch.getBounds(ch.parent);
+				//trace(bounds.height);
+				var diff:Number = Math.abs(ch.y - bounds.topLeft.y);
+				
+				ch.y = alturaTotal + diff;
+				alturaTotal += bounds.height + dist;
+			}
 		}
 		
 		private function addListeners():void 
@@ -86,8 +115,8 @@ package
 			stage.addEventListener(MouseEvent.CLICK, stageClick);
 		}
 		
-		private var textConfig:TextFormat = new TextFormat("Arial", 8, 0x000000);
-		private var textConfigCh5:TextFormat = new TextFormat("Arial", 7, 0x000000);
+		private var textConfig:TextFormat = new TextFormat("Arial", 14, 0x000000);
+		private var textConfigCh5:TextFormat = new TextFormat("Arial", 12, 0x000000);
 		
 		private function checkChange(e:Event):void 
 		{
@@ -175,31 +204,30 @@ package
 		
 		private function lockCheckboxes():void 
 		{
-			check_lock[ch1].visible = true;
-			check_lock[ch2].visible = true;
-			check_lock[ch3].visible = true;
-			check_lock[ch4].visible = true;
-			check_lock[ch5].visible = true;
-			check_lock[ch6].visible = true;
-			check_lock[ch7].visible = true;
-			check_lock[ch8].visible = true;
+			ch1.enabled = false;
+			ch2.enabled = false;
+			ch3.enabled = false;
+			ch4.enabled = false;
+			ch5.enabled = false;
+			ch6.enabled = false;
+			ch7.enabled = false;
+			ch8.enabled = false;
 		}
 		
 		private function unlockCheckboxes():void 
 		{
-			check_lock[ch1].visible = false;
-			check_lock[ch2].visible = false;
-			check_lock[ch3].visible = false;
-			check_lock[ch4].visible = false;
-			check_lock[ch5].visible = false;
-			check_lock[ch6].visible = false;
-			check_lock[ch7].visible = false;
-			check_lock[ch8].visible = false;
+			ch1.enabled = true;
+			ch2.enabled = true;
+			ch3.enabled = true;
+			ch4.enabled = true;
+			ch5.enabled = true;
+			ch6.enabled = true;
+			ch7.enabled = true;
+			ch8.enabled = true;
 			
 			for each (var item:CheckBox in checksUsados) 
 			{
-				//if(campo_check[campoSelected][0] != item) check_lock[item].visible = true;
-				if(campo_check[campoSelected].indexOf(item) < 0) check_lock[item].visible = true;
+				if (campo_check[campoSelected].indexOf(item) < 0) item.enabled = false;
 			}
 		}
 		
@@ -235,7 +263,7 @@ package
 			campo7 = campo7_s;
 			campo8 = campo8_s;
 			
-			campo1.autoSize = TextFieldAutoSize.LEFT;
+			/*campo1.autoSize = TextFieldAutoSize.LEFT;
 			campo1.multiline = true;
 			campo1.text = " \n ";
 			campo2.autoSize = TextFieldAutoSize.LEFT;
@@ -258,7 +286,7 @@ package
 			campo7.text = " \n ";
 			campo8.autoSize = TextFieldAutoSize.LEFT;
 			campo8.multiline = true;
-			campo8.text = " \n ";
+			campo8.text = " \n ";*/
 			
 			campo_check[campo1] = [];
 			campo_check[campo2] = [];
@@ -287,14 +315,6 @@ package
 			drawRectangle(campo7, campo_fundo[campo7], bordaRectNormal);
 			drawRectangle(campo8, campo_fundo[campo8], bordaRectNormal);
 			
-			check_lock[ch1] = ch1_lock;
-			check_lock[ch2] = ch2_lock;
-			check_lock[ch3] = ch3_lock;
-			check_lock[ch4] = ch4_lock;
-			check_lock[ch5] = ch5_lock;
-			check_lock[ch6] = ch6_lock;
-			check_lock[ch7] = ch7_lock;
-			check_lock[ch8] = ch8_lock;
 		}
 		
 		override public function saveStatus():Object 
