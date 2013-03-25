@@ -80,7 +80,7 @@ package BaseAssets.screens
 			this.visible = true;
 			glassPane.visible = true;
 			Actuate.tween(glassPane, 0.4, { /*scaleX:1, scaleY:1*/alpha:1 } );
-			Actuate.tween(this, 0.6, { scaleX:1, scaleY:1 } ).ease(Elastic.easeOut);
+			Actuate.tween(this, 0.6, { scaleX:1, scaleY:1 } );
 		}
 		
 		public function updateStatics(stats:Object = null):void

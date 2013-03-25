@@ -32,7 +32,7 @@ package
 		}
 		
 		protected var bordaRectNormal:uint = 0xC0C0C0;
-		protected var bordaRectSelected:uint = 0xD90000;
+		protected var bordaRectSelected:uint = 0xFF8000;
 		private var insideRect:uint = 0xFFFFFF;
 		private var insideAlpha:Number = 1;
 		private var glow:GlowFilter = new GlowFilter(0xFF8000, 1, 6, 6, 2, 1, false, false);
@@ -41,8 +41,8 @@ package
 			rect.x = txt.x;
 			rect.y = txt.y;
 			rect.graphics.clear();
-			//rect.graphics.lineStyle(2, cor);
-			rect.graphics.lineStyle(2, bordaRectNormal);
+			rect.graphics.lineStyle(2, cor);
+			//rect.graphics.lineStyle(2, bordaRectNormal);
 			rect.graphics.beginFill(insideRect, insideAlpha);
 			if (rect.rotation == 0) rect.graphics.drawRect(0, 0, txt.width, txt.height);
 			else rect.graphics.drawRect(0, 0, txt.height, txt.width);

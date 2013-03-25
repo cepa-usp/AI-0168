@@ -188,11 +188,14 @@ package BaseAssets.status
 			var obj:Object;
 			
 			if (mementoSerialized) {
-				
-				var descompressed:String = uncompress(mementoSerialized);
-				mementoSerialized = descompressed;
-				//trace("descompactado: " + mementoSerialized);
-				obj = JSON.parse(mementoSerialized);
+				try{
+					var descompressed:String = uncompress(mementoSerialized);
+					mementoSerialized = descompressed;
+					//trace("descompactado: " + mementoSerialized);
+					obj = JSON.parse(mementoSerialized);
+				}catch (error:Error){
+					
+				}
 			}
 			return obj;
 		}

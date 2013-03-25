@@ -3,6 +3,7 @@ package BaseAssets.screens
 	import BaseAssets.events.BaseEvent;
 	import com.eclecticdesignstudio.motion.Actuate;
 	import com.eclecticdesignstudio.motion.easing.Elastic;
+	import fl.transitions.easing.None;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -78,7 +79,7 @@ package BaseAssets.screens
 			glassPane.visible = true;
 			//this.scaleX = this.scaleY = 1;
 			Actuate.tween(glassPane, 0.4, { /*scaleX:1, scaleY:1*/alpha:1 } );
-			Actuate.tween(this, 0.6, { scaleX:1, scaleY:1 } ).ease(Elastic.easeOut);
+			Actuate.tween(this, 0.6, { scaleX:1, scaleY:1 } );
 		}
 		
 		public function setText(texto:String):void

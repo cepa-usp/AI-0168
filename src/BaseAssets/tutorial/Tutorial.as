@@ -111,7 +111,11 @@ package BaseAssets.tutorial
 			stage.removeChild(this);			
 			position = -1;
 			_state = STATE_NONE;
-			dispatchEvent(new TutorialEvent(-1, TutorialEvent.FIM_TUTORIAL, true));			
+			var evt:TutorialEvent = new TutorialEvent( -1, TutorialEvent.FIM_TUTORIAL, true);
+			if (position == baloes.length) {
+				evt.last = true;
+			}
+			dispatchEvent(evt);
 		}
 		
 		public function get state():int 
