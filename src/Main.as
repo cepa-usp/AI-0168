@@ -477,6 +477,8 @@
 					informacoes.tentativa.defaultTextFormat = textFormatRevisao;
 					informacoes.tentativa.text = "Modo de\nrevisão";
 				}else {
+					indiceTela[indiceNavegacao].mouseChildren = true;
+					indiceTela[indiceNavegacao].mouseEnabled = true;
 					textFormatNormal.color = 0x000000;
 					informacoes.tentativa.defaultTextFormat = textFormatNormal;
 					informacoes.tentativa.text = "Tentativa:\n" + tentativas[indice] + " de " + maxTentativas;
@@ -517,6 +519,23 @@
 			{
 				if(i <= 2) telas[i].reset();
 			}
+			
+			descarregaTela(indiceNavegacao);
+			indiceNavegacao = 1;
+			
+			pontuacao[1] = 0;
+			pontuacao[2] = 0;
+			pontuacao[3] = 0;
+			
+			tentativas[1] = 1;
+			tentativas[2] = 1;
+			tentativas[3] = 1;
+			
+			finalizada[1] = false;
+			finalizada[2] = false;
+			finalizada[3] = false;
+			
+			carregaTela(indiceNavegacao);
 		}
 		
 		override public function iniciaTutorial(e:MouseEvent = null):void 

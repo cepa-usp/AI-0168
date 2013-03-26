@@ -307,6 +307,7 @@ package
 			for (var i:int = 1; i <= 5; i++) 
 			{
 				this["ch" + i].selected = false;
+				this["ch" + i].filters = [];
 				if(i <= 3){
 					campo_check[this["campo" + i]] = [];
 					this["campo" + i].text = " ";
