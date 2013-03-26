@@ -162,6 +162,7 @@ package
 			if (campoSelected == null) return;
 			if (e.target is TextField) return;
 			if (e.target is CheckBox) return;
+			if (stage.mouseX < 184) return;
 			
 			drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
 			campoSelected = null;
@@ -280,7 +281,7 @@ package
 			
 			for (var i:int = 1; i <= 18; i++) 
 			{
-				this["ch" + i].selected = status.x["ch" + i + "_s"];
+				this["ch" + i + "_s"].selected = status.x["ch" + i];
 				
 				if (i <= 8) {
 					if (status.c["c" + i] == "v") {

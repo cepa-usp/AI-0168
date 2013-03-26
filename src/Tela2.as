@@ -177,6 +177,7 @@ package
 			if (campoSelected == null) return;
 			if (e.target is TextField) return;
 			if (e.target is CheckBox) return;
+			if (stage.mouseX < 184) return;
 			
 			drawRectangle(campoSelected, campo_fundo[campoSelected], bordaRectNormal);
 			campoSelected = null;

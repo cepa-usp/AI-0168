@@ -528,6 +528,7 @@
 		
 		private function tutorialFinalizado(e:TutorialEvent):void 
 		{
+			tutorial.removeEventListener(TutorialEvent.FIM_TUTORIAL, tutorialFinalizado);
 			if (e.last) tutorialCompleted = true;
 			saveStatus();
 		}

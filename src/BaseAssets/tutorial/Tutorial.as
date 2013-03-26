@@ -109,12 +109,12 @@ package BaseAssets.tutorial
 			stage.removeEventListener(MouseEvent.CLICK, proximo);			
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKey);
 			stage.removeChild(this);			
-			position = -1;
 			_state = STATE_NONE;
 			var evt:TutorialEvent = new TutorialEvent( -1, TutorialEvent.FIM_TUTORIAL, true);
-			if (position == baloes.length) {
+			if (position == baloes.length || position == baloes.length - 1) {
 				evt.last = true;
 			}
+			position = -1;
 			dispatchEvent(evt);
 		}
 		
