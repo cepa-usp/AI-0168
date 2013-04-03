@@ -17,7 +17,7 @@ package BaseAssets.status
 		//SCORM:
 		
 		private const PING_INTERVAL:Number = 5 * 60 * 1000; // 5 minutos
-		private var completed:Boolean;
+		private var _completed:Boolean;
 		private var scorm:SCORM;
 		private var _scormExercise:int = 0;
 		private var connected:Boolean;
@@ -240,6 +240,16 @@ package BaseAssets.status
 		public function get iniciada():Boolean 
 		{
 			return _iniciada;
+		}
+		
+		public function get completed():Boolean 
+		{
+			return _completed;
+		}
+		
+		public function set completed(value:Boolean):void 
+		{
+			_completed = value;
 		}
 		
 		public function save():void

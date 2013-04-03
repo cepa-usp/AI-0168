@@ -272,6 +272,7 @@
 					finalizada[indiceNavegacao] = true;
 					feedText += "\nOs itens incorretos foram destacados em vermelho e não há mais tentativas neste passo para corrigí-los. Veja as respostas certas no próximo passo.";
 					needTuto = true;
+					if (indiceNavegacao == 3) saveAPI.completed = true;
 				}else {
 					mudou = false;
 					tentativas[indiceNavegacao]++;
@@ -468,6 +469,7 @@
 				lock(navegacao.avancar);
 				unlock(navegacao.voltar);
 				btAval.visible = false;
+				if (!saveAPI.completed) saveAPI.completed = true;
 			}else {
 				informacoes.fundoPonto.visible = true;
 				if (finalizada[indiceNavegacao]) {
